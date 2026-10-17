@@ -1,0 +1,1136 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Muraqaba: Interactive Study &amp; Practice Guide</title>
+<meta name="description" content="An organised, interactive guide to the methodologies and meditation practices in Muraqaba: The Art and Science of Sufi Meditation by Shaykh Khwaja Shamsuddin Azeemi.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>:root{
+  --bg:#0e1124;--bg2:#141836;--surf:#1a1f42;--surf2:#222850;--line:#2e3566;
+  --tx:#e9e7f4;--tx2:#b4b2cf;--tx3:#8a88ab;
+  --lamp:#f3b94d;--lamp2:#ffd98a;--sea:#52b8ae;--rose:#e08aa6;--lapis:#7b93ff;
+  --ok:#7fd1a0;--warn:#f0a35e;--shadow:0 10px 40px rgba(2,3,18,.45);
+  --serif:'Spectral','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:'Albert Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --rail:260px;
+}
+:root[data-theme=light]{
+  --bg:#f4f2fa;--bg2:#eceaf6;--surf:#ffffff;--surf2:#f0eef9;--line:#d6d2ea;
+  --tx:#1b1d3a;--tx2:#454870;--tx3:#6c6f94;
+  --lamp:#b76e00;--lamp2:#d98a14;--sea:#17786f;--rose:#b2476b;--lapis:#3b52c9;
+  --ok:#217a4a;--warn:#a85a10;--shadow:0 10px 30px rgba(40,40,90,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.65 var(--serif);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--lamp)}
+:focus-visible{outline:2px solid var(--lamp);outline-offset:2px;border-radius:4px}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.2;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(2.4rem,5.5vw,4rem)}
+h2{font-size:clamp(1.8rem,3.4vw,2.5rem)}
+h3{font-size:1.3rem}
+h4{font-size:1.05rem;font-family:var(--sans);font-weight:600}
+p{margin:0 0 1em;max-width:68ch}
+.sans{font-family:var(--sans)}
+.muted{color:var(--tx2)}.small{font-size:.88rem}
+.pg{font-family:var(--sans);font-size:.74rem;color:var(--tx3);white-space:nowrap}
+
+/* rail */
+.rail{position:fixed;inset:0 auto 0 0;width:var(--rail);padding:22px 14px;background:var(--bg2);border-right:1px solid var(--line);overflow:auto;z-index:30;display:flex;flex-direction:column;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;padding:2px 8px 12px;font-family:var(--serif);font-size:1.25rem}
+.brand svg{flex:none}
+.rail nav{display:flex;flex-direction:column;gap:2px}
+.rail nav a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--tx2);font:500 .95rem var(--sans)}
+.rail nav a:hover{background:var(--surf2);color:var(--tx)}
+.rail nav a.on{color:var(--tx);background:var(--surf2)}
+.rail nav a .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none;transition:.25s}
+.rail nav a.on .dot{background:var(--lamp);box-shadow:0 0 12px 2px var(--lamp)}
+.railtools{margin-top:auto;display:flex;gap:8px;padding:10px 4px 0}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surf);color:var(--tx);padding:9px 15px;border-radius:999px;cursor:pointer;font:600 .92rem var(--sans);transition:.15s}
+.btn:hover{border-color:var(--lamp)}
+.btn.pri{background:var(--lamp);border-color:var(--lamp);color:#1a1405}
+.btn.pri:hover{background:var(--lamp2)}
+.btn.sm{padding:6px 12px;font-size:.84rem}
+.btn.ghost{background:transparent}
+.topbar{display:none}
+main{margin-left:var(--rail);padding:0 clamp(18px,4vw,56px) 80px}
+section.sec{max-width:960px;padding-top:72px}
+.sec>header{margin-bottom:28px}
+.sec>header p{color:var(--tx2);font-size:1.08rem}
+.kick{font:600 .8rem var(--sans);color:var(--lamp);margin-bottom:8px;display:block}
+
+/* hero */
+.hero{display:grid;align-content:start;padding:56px 0 30px;max-width:1000px}
+.hero h1{max-width:19ch;margin-bottom:.35em}
+.hero .lede{font-size:1.2rem;color:var(--tx2);max-width:52ch}
+.lampstage{position:relative;margin:34px 0 8px;border:1px solid var(--line);border-radius:20px;background:radial-gradient(120% 100% at 50% 0%,var(--surf2),var(--bg2));overflow:hidden;display:grid;grid-template-columns:minmax(220px,1fr) 1.2fr;gap:0;box-shadow:var(--shadow)}
+.lampstage svg{display:block;width:100%;height:100%}
+.night{background:radial-gradient(90% 90% at 36% 42%,#1d2356,#080a1c);min-height:260px}
+.lampctl{padding:26px 28px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.lampctl output{font:600 1.5rem var(--serif);color:var(--lamp)}
+.lampctl p{margin:0;font-size:.98rem;color:var(--tx2)}
+input[type=range]{width:100%;accent-color:var(--lamp)}
+.stages{display:flex;gap:6px;flex-wrap:wrap}
+.stages button{flex:1;min-width:84px;padding:7px 8px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--tx2);cursor:pointer;font:600 .85rem var(--sans)}
+.stages button.on{background:var(--lamp);color:#1a1405;border-color:var(--lamp)}
+.herocta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:34px;color:var(--tx2);font:500 .92rem var(--sans)}
+.stats b{display:block;font:500 1.7rem var(--serif);color:var(--tx)}
+
+/* generic cards */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.card h3,.card h4{margin-bottom:.35em}
+.card p:last-child{margin-bottom:0}
+.note{border-left:3px solid var(--sea);background:var(--surf2);padding:12px 16px;border-radius:0 10px 10px 0;font-size:.96rem;margin:16px 0}
+.note.warn{border-color:var(--warn)}
+.note b.t{font-family:var(--sans)}
+.tag{display:inline-block;font:600 .74rem var(--sans);padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--tx2);margin-right:4px;background:var(--bg2)}
+.tag.f{color:var(--sea);border-color:var(--sea)}.tag.m{color:var(--lapis);border-color:var(--lapis)}.tag.a{color:var(--rose);border-color:var(--rose)}
+.tag.t{color:var(--warn);border-color:var(--warn)}
+details{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:0;margin-bottom:10px}
+details>summary{cursor:pointer;padding:13px 18px;font:600 1rem var(--sans);list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center}
+details>summary::-webkit-details-marker{display:none}
+details>summary::after{content:'+';font-size:1.3rem;color:var(--lamp);transition:.2s}
+details[open]>summary::after{transform:rotate(45deg)}
+details .body{padding:0 18px 16px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.chip{border:1px solid var(--line);background:var(--surf);color:var(--tx2);padding:6px 13px;border-radius:999px;cursor:pointer;font:600 .86rem var(--sans)}
+.chip.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+input.field,select.field,textarea.field{width:100%;background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-family:var(--sans)}
+textarea.field{min-height:90px;resize:vertical}
+table{border-collapse:collapse;width:100%;font:.93rem var(--sans)}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--tx3);font-weight:600}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--surf)}
+
+/* map */
+.chlist{display:grid;gap:8px}
+.ch{display:grid;grid-template-columns:54px 1fr;gap:14px;padding:12px 16px;background:var(--surf);border:1px solid var(--line);border-radius:12px;align-items:start}
+.ch .p{font:600 .85rem var(--sans);color:var(--lamp);padding-top:3px}
+.ch h4{margin:0 0 2px}.ch p{margin:0;font-size:.95rem;color:var(--tx2)}
+.ch .sub{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}
+
+/* atlas */
+.atlas{display:grid;gap:0;position:relative;margin-left:14px;border-left:2px solid var(--line)}
+.layer{position:relative;padding:0 0 26px 26px}
+.layer::before{content:'';position:absolute;left:-8px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--lamp)}
+.layer h3{margin-bottom:2px}
+.layer>p{color:var(--tx2);font-size:.98rem}
+.fam{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.fam button{text-align:left;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;transition:.15s}
+.fam button:hover{border-color:var(--lamp);transform:translateY(-1px)}
+.fam button b{display:block;font:600 .98rem var(--sans);margin-bottom:2px}
+.fam button span{font-size:.88rem;color:var(--tx2);line-height:1.4;display:block}
+.fam button i{font:normal 600 .75rem var(--sans);color:var(--lamp);display:block;margin-top:6px}
+
+/* wizard */
+.wiz{display:grid;gap:14px}
+.wq{display:grid;gap:8px}
+.wq h4{margin:0}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt{padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surf);cursor:pointer;font:500 .93rem var(--sans)}
+.opt.on{border-color:var(--lamp);box-shadow:inset 0 0 0 1px var(--lamp);color:var(--lamp)}
+
+/* guides */
+.gcard{display:flex;flex-direction:column;gap:8px;text-align:left;cursor:pointer;position:relative;overflow:hidden;transition:.15s}
+.gcard:hover{border-color:var(--lamp)}
+.gcard .glow{position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;filter:blur(28px);opacity:.5;pointer-events:none}
+.gcard h3{margin:0;font-size:1.15rem}
+.gcard p{margin:0;font-size:.92rem;color:var(--tx2)}
+.gcard .meta{margin-top:auto;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.gdetail{display:none}
+.gdetail.open{display:block}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding:12px 14px 12px 52px;border:1px solid var(--line);background:var(--surf);border-radius:12px;margin-bottom:8px;font-size:.98rem}
+.steps li::before{content:counter(s);position:absolute;left:14px;top:11px;width:26px;height:26px;border-radius:50%;border:1px solid var(--lamp);color:var(--lamp);display:grid;place-items:center;font:600 .82rem var(--sans)}
+.steps li small{display:block;color:var(--tx3);font:.78rem var(--sans);margin-top:3px}
+.durs{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.backlink{background:none;border:0;color:var(--lamp);cursor:pointer;font:600 .92rem var(--sans);padding:0 0 12px}
+
+/* player */
+.player{position:fixed;inset:0;z-index:100;display:none;flex-direction:column;background:radial-gradient(90% 70% at 50% 40%,var(--gc,#2b2f66) -40%,#07091a 70%);color:#ecebf7;padding:22px clamp(16px,5vw,60px)}
+.player.open{display:flex}
+.ptop{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ptop .btn{background:rgba(255,255,255,.07);color:#ecebf7;border-color:rgba(255,255,255,.18)}
+.pmid{flex:1;display:grid;place-items:center;text-align:center;gap:20px;align-content:center}
+.orb{width:min(46vw,250px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 40%,#fff6,var(--gc,#f3b94d) 55%,transparent 72%);box-shadow:0 0 90px 20px color-mix(in srgb,var(--gc,#f3b94d) 55%,transparent);transform:scale(.6);transition:transform 4s ease-in-out;opacity:.9}
+.pstep{font:500 clamp(1.25rem,3vw,1.9rem)/1.45 var(--serif);max-width:30ch;min-height:5.8em;transition:opacity .5s}
+.pphase{font:600 .85rem var(--sans);opacity:.75}
+.pbot{display:grid;gap:12px}
+.pbar{height:4px;background:rgba(255,255,255,.14);border-radius:4px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:var(--gc,#f3b94d)}
+.pctl{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.pctl .btn{background:rgba(255,255,255,.07);color:#ecebf7;border-color:rgba(255,255,255,.18)}
+.pctl .btn.pri{background:var(--gc,#f3b94d);color:#111}
+.clock{font:600 1.5rem var(--sans);font-variant-numeric:tabular-nums}
+.pfin{display:none;max-width:560px;margin:auto;text-align:left;gap:12px}
+.player.done .pmid,.player.done .pbot{display:none}
+.player.done .pfin{display:grid}
+.pfin textarea{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2);color:#fff}
+.pfin .chip{background:transparent;color:#ddd;border-color:rgba(255,255,255,.25)}
+.pfin .chip.on{background:#fff;color:#111}
+
+/* lab */
+.pacer{display:grid;place-items:center;padding:26px;background:radial-gradient(80% 100% at 50% 0,var(--surf2),var(--surf));border:1px solid var(--line);border-radius:18px}
+.pacer>*{max-width:100%}.pcirc{width:230px!important;height:230px;border-radius:50%;border:2px solid var(--lamp);display:grid;place-items:center;background:radial-gradient(circle,color-mix(in srgb,var(--lamp) 28%,transparent),transparent 70%);transform:scale(.55);will-change:transform}
+.pcirc span{font:600 1.1rem var(--sans);text-align:center}
+.labrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:16px 0;width:100%;max-width:620px}
+.labrow label{font:600 .82rem var(--sans);color:var(--tx2);display:block}.labrow label input{display:block;margin-top:6px}
+.labrow label output{color:var(--lamp)}
+
+/* planner */
+.weekbar{display:grid;grid-template-columns:repeat(16,1fr);gap:4px;margin:12px 0}
+.weekbar i{height:30px;border-radius:5px;background:var(--surf2);border:1px solid var(--line);display:grid;place-items:center;font:600 .7rem var(--sans);color:var(--tx3);font-style:normal}
+.weekbar i.past{background:color-mix(in srgb,var(--sea) 35%,var(--surf2))}
+.weekbar i.now{background:var(--lamp);color:#1a1405;border-color:var(--lamp)}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border:1px solid var(--line);background:var(--surf);border-radius:10px;margin-bottom:8px;cursor:pointer;font-size:.97rem}
+.chk input{margin-top:5px;accent-color:var(--lamp);width:18px;height:18px;flex:none}
+.chk.done{opacity:.6}.chk.done span{text-decoration:line-through}
+
+/* ladder */
+.ladder{display:grid;gap:0;max-width:760px}
+.rung{display:grid;grid-template-columns:44px 1fr;gap:14px;cursor:pointer}
+.rung .rail2{display:flex;flex-direction:column;align-items:center}
+.rung .node{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:var(--bg);display:grid;place-items:center;font:600 .78rem var(--sans);color:var(--tx3);transition:.2s;flex:none}
+.rung .line{flex:1;width:2px;background:var(--line);min-height:14px}
+.rung.on .node,.rung:hover .node{border-color:var(--lamp);color:var(--lamp);box-shadow:0 0 14px color-mix(in srgb,var(--lamp) 50%,transparent)}
+.rung .txt{padding:2px 0 18px}
+.rung h4{margin:0}.rung .one{color:var(--tx2);font-size:.95rem;margin:0}
+.rung .more{display:none;margin-top:8px}.rung.on .more{display:block}
+.rung .more p{font-size:.95rem}
+
+/* misc */
+.hl{background:color-mix(in srgb,var(--lamp) 30%,transparent);border-radius:3px}
+.search{position:fixed;inset:0;background:rgba(5,6,20,.7);z-index:120;display:none;padding:9vh 16px}
+.search.open{display:block}
+.sbox{max-width:640px;margin:auto;background:var(--surf);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.sbox input{width:100%;border:0;background:transparent;padding:18px 20px;font:500 1.1rem var(--sans);outline:none;border-bottom:1px solid var(--line)}
+.sres{max-height:56vh;overflow:auto}
+.sres a{display:block;padding:10px 20px;text-decoration:none;color:var(--tx);font-family:var(--sans);border-bottom:1px solid var(--line)}
+.sres a:hover,.sres a.sel{background:var(--surf2)}
+.sres small{display:block;color:var(--tx3)}
+.twocol{columns:2 260px;column-gap:24px}
+.twocol>*{break-inside:avoid}
+.gl dt{font:600 1rem var(--sans);color:var(--lamp);margin-top:12px}
+.gl dd{margin:2px 0 0;color:var(--tx2);font-size:.97rem}
+.diag{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:16px}
+.diag svg{width:100%;height:auto}
+.swap{display:flex;gap:6px;margin-bottom:10px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 18px;border-radius:999px;font:600 .9rem var(--sans);z-index:200;opacity:0;pointer-events:none;transition:.3s}
+.toast.on{opacity:1}
+canvas#stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55}
+:root[data-theme=light] canvas#stars{display:none}
+main,.rail{position:relative;z-index:1}
+.rail{position:fixed}
+
+@media(max-width:900px){
+  .rail{transform:translateX(-100%);transition:.25s;width:min(300px,86vw);box-shadow:var(--shadow)}
+  .rail.open{transform:none}
+  .topbar{display:flex;position:sticky;top:0;z-index:25;justify-content:space-between;align-items:center;padding:10px 16px;background:var(--bg2);border-bottom:1px solid var(--line);margin-left:0}
+  main{margin-left:0;padding:0 16px 60px}
+  .lampstage{grid-template-columns:1fr}
+  section.sec{padding-top:52px}
+  .hero{min-height:auto;padding-top:30px}
+  .weekbar{grid-template-columns:repeat(8,1fr)}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}canvas#stars{display:none}}
+@media print{.rail,.topbar,.player,.search,canvas#stars{display:none!important}main{margin:0}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="topbar"><button class="btn sm" id="menuBtn" aria-label="Open menu">Menu</button><b class="sans">Muraqaba guide</b><button class="btn sm" id="searchBtn2">Search</button></div>
+<aside class="rail" id="rail">
+  <div class="brand"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="12" fill="none" stroke="currentColor" opacity=".25"/><circle cx="13" cy="13" r="5" fill="var(--lamp)"/><circle cx="13" cy="13" r="9" fill="none" stroke="var(--lamp)" opacity=".5"/></svg>Muraqaba</div>
+  <nav id="nav" aria-label="Sections">
+    <a href="#home"><i class="dot"></i>Start</a>
+    <a href="#map"><i class="dot"></i>Book map</a>
+    <a href="#foundations"><i class="dot"></i>Foundations</a>
+    <a href="#method"><i class="dot"></i>Methodology</a>
+    <a href="#library"><i class="dot"></i>Practice library</a>
+    <a href="#lab"><i class="dot"></i>Breath &amp; focus lab</a>
+    <a href="#plan"><i class="dot"></i>16-week program</a>
+    <a href="#levels"><i class="dot"></i>Stages of the path</a>
+    <a href="#dreams"><i class="dot"></i>Dream casebook</a>
+    <a href="#traditions"><i class="dot"></i>Traditions &amp; benefits</a>
+    <a href="#safety"><i class="dot"></i>Safety &amp; notes</a>
+    <a href="#glossary"><i class="dot"></i>Glossary</a>
+  </nav>
+  <div class="railtools"><button class="btn sm" id="searchBtn" title="Search (/)">Search</button><button class="btn sm" id="themeBtn" aria-label="Toggle light or dark">Light / dark</button></div>
+</aside>
+
+<main>
+<section class="hero sec" id="home">
+  <span class="kick">A study and practice guide to the book by Shaykh Khwaja Shamsuddin Azeemi</span>
+  <h1>Muraqaba: how attention becomes sight</h1>
+  <p class="lede">The book teaches one skill: holding a single idea until everything else falls quiet. Everything in this guide — 29 practices, breathing drills, a 16-week plan, the stages of the path — grows from that. Start with the lamp.</p>
+  <div class="lampstage">
+    <div class="night"><svg viewBox="0 0 400 300" role="img" aria-label="A lamp lighting an apple. The brighter the lamp, the clearer the apple.">
+      <defs>
+        <radialGradient id="glow"><stop offset="0" stop-color="#ffe6a8" stop-opacity="1"/><stop offset="1" stop-color="#f3b94d" stop-opacity="0"/></radialGradient>
+        <filter id="blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur id="blurN" stdDeviation="14"/></filter>
+      </defs>
+      <circle id="halo" cx="146" cy="128" r="150" fill="url(#glow)" opacity=".1"/>
+      <g id="lampbody" transform="translate(60 120)">
+        <path d="M0 40 q30 -22 60 0 l-8 30 h-44z" fill="#d6a043" stroke="#8a5d14" stroke-width="2"/>
+        <path d="M58 40 q22 -2 24 -12" fill="none" stroke="#d6a043" stroke-width="6" stroke-linecap="round"/>
+        <path id="flame" d="M82 30 c-9 -10 -6 -20 0 -30 c6 10 9 20 0 30z" fill="#ffd98a" style="transform-origin:82px 30px"/>
+      </g>
+      <g id="apple" filter="url(#blur)" opacity=".15" transform="translate(255 140)">
+        <path d="M0 -20 c-30 -22 -62 14 -42 52 c10 20 30 30 42 22 c12 8 32 -2 42 -22 c20 -38 -12 -74 -42 -52z" fill="#d94b4b"/>
+        <path d="M0 -20 c-2 -14 4 -24 12 -30" stroke="#6b4a2a" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M10 -40 c18 -14 34 -4 36 4 c-14 8 -28 8 -36 -4z" fill="#58b36a"/>
+        <ellipse cx="-20" cy="2" rx="8" ry="16" fill="#fff" opacity=".28" transform="rotate(20 -20 2)"/>
+      </g>
+    </svg></div>
+    <div class="lampctl">
+      <div class="sans small muted">Book p.42, 87 · how anything becomes visible</div>
+      <output id="lampOut">Whim</output>
+      <p id="lampTxt"></p>
+      <input type="range" id="lamp" min="0" max="100" value="12" aria-label="Lamp intensity">
+      <div class="stages" id="lampBtns"></div>
+    </div>
+  </div>
+  <div class="herocta">
+    <button class="btn pri" data-go="library">Browse the practices</button>
+    <button class="btn" data-go="method">See the methodology</button>
+    <button class="btn" id="wizOpen">Help me choose</button>
+  </div>
+  <div class="stats">
+    <div><b>164</b>pages read</div><div><b id="statG">30</b>meditation guides</div><div><b>7</b>colour lights</div><div><b>3</b>breath practices · 5 immersion drills</div><div><b>10</b>stages of the path</div>
+  </div>
+</section>
+
+<section class="sec" id="map">
+  <header><span class="kick">Whole book at a glance</span><h2>Book map</h2><p>Every chapter with its printed page number and a one-line summary. Filter by what you need.</p></header>
+  <div class="chips" id="mapChips"></div>
+  <div class="chlist" id="chlist"></div>
+</section>
+
+<section class="sec" id="foundations">
+  <header><span class="kick">The theory in plain terms</span><h2>Foundations</h2><p>The author builds his case from everyday experience: dreams, daydreaming, intuition. Each card is one idea you need before the practices make sense.</p></header>
+  <div id="foundList"></div>
+  <h3 style="margin-top:28px">Day senses and night senses</h3>
+  <div class="grid g2" id="dayNight"></div>
+</section>
+
+<section class="sec" id="method">
+  <header><span class="kick">How everything fits</span><h2>Methodology atlas</h2><p>The book’s practices form layers. Prepare, train concentration, learn the core technique, then choose a family of muraqaba. Tap any family to see its guides.</p></header>
+  <div class="atlas" id="atlas"></div>
+  <h3 style="margin-top:10px">The core technique, in four lines</h3>
+  <div class="grid g2">
+    <div class="card"><h4>1 · Empty</h4><p>Close the eyes. Don’t pay willing attention to thoughts, and don’t start any of your own (p.95).</p></div>
+    <div class="card"><h4>2 · One idea</h4><p>Hold a single idea or image-less “orientation”. Don’t paint a picture; don’t add meanings (p.99).</p></div>
+    <div class="card"><h4>3 · Let thoughts pass</h4><p>Don’t reject them. Rejection echoes. Walk toward the park and ignore the shop windows (p.100).</p></div>
+    <div class="card"><h4>4 · Return gently</h4><p>Close slowly; walk quietly; speak softly. The state should enter ordinary waking life (p.101).</p></div>
+  </div>
+  <h3 style="margin-top:34px">Working rules from the book</h3>
+  <div class="grid g3" id="rules"></div>
+  <h3 style="margin-top:34px">Posture, time and gear</h3>
+  <div class="grid g3" id="posture"></div>
+  <div class="note warn"><b class="t">Gear (p.98).</b> A dark eye band and ear cotton are optional in the book; the guides give them as written.</div>
+  <h3 style="margin-top:34px">Four best times (p.97)</h3>
+  <div class="grid g2" id="times"></div>
+  <h3 style="margin-top:34px">Common obstacles</h3>
+  <div id="obstacles"></div>
+</section>
+
+<section class="sec" id="library">
+  <header><span class="kick">Guided meditations</span><h2>Practice library</h2><p>Every muraqaba in the book as a step-by-step guide with a built-in session timer. Press <b>Begin</b> for a full-screen guided sit with gentle chimes.</p></header>
+  <div id="wizard" class="card" style="margin-bottom:22px;display:none"></div>
+  <div id="libList">
+    <div class="chips" id="famChips"></div>
+    <div class="chips" id="lvlChips"></div>
+    <input class="field" id="gSearch" placeholder="Search practices (e.g. blue, grave, breath, heart)" style="margin-bottom:16px" aria-label="Search practices">
+    <div class="grid g3" id="gGrid"></div>
+  </div>
+  <div id="gDetail" class="gdetail"></div>
+  <h3 style="margin-top:40px">Your practice log</h3>
+  <div id="logbox" class="card"></div>
+</section>
+
+<section class="sec" id="lab">
+  <header><span class="kick">Preparatory drills</span><h2>Breath &amp; focus lab</h2><p>The book pairs muraqaba with breathing and “istaghraaq” (immersion) drills to calm the mind faster. Use the pacer for the breath practices.</p></header>
+  <div class="pacer"><div class="pcirc" id="pcirc"><span id="plabel">Ready</span></div>
+    <div class="chips" id="breathChips" style="margin-top:20px;justify-content:center"></div>
+    <div class="labrow">
+      <label>Inhale <output id="oi">4</output> s<input type="range" id="ri" min="2" max="10" value="4"></label>
+      <label>Hold <output id="oh">0</output> s<input type="range" id="rh" min="0" max="16" value="0"></label>
+      <label>Exhale <output id="oo">6</output> s<input type="range" id="ro" min="2" max="12" value="6"></label>
+    </div>
+    <div class="herocta" style="margin:0"><button class="btn pri" id="pStart">Start</button><span class="sans muted" id="pCount">0 cycles</span></div>
+    <p class="small muted" id="pDesc" style="text-align:center;margin:14px auto 0"></p>
+  </div>
+  <div class="note warn"><b class="t">From the book.</b> Don’t force a slow breathing rate during muraqaba itself (p.105).</div>
+  <h3 style="margin-top:30px">Istaghraaq (immersion) drills</h3>
+  <div id="istagh"></div>
+</section>
+
+<section class="sec" id="plan">
+  <header><span class="kick">Four months, step by step</span><h2>16-week program</h2><p>The book’s structured routine for peace, freedom from fear, immunity and sleep. Set a start date and tick off each day’s items. Progress stays in your browser.</p></header>
+  <div class="card"><label class="sans small">Start date <input type="date" id="planStart" class="field" style="max-width:220px;margin-top:4px"></label>
+  <div class="weekbar" id="weekbar"></div><div id="planNow"></div></div>
+  <div class="grid g2" id="planPhases" style="margin-top:18px"></div>
+  <div class="note"><b class="t">Food (p.109).</b> <span id="planFood"></span></div>
+</section>
+
+<section class="sec" id="levels">
+  <header><span class="kick">Experiences and where they lead</span><h2>Stages of the path</h2><p>From drowsiness to fana, in the order the book describes them. Tap a stage. These are descriptions of experiences, not goals to chase; the author repeatedly says progress varies by temperament.</p></header>
+  <div class="ladder" id="ladder"></div>
+  <div class="note"><b class="t">Reminder.</b> If experiences frighten you or disturb sleep, stop; see <a href="#safety">Safety</a>. The author’s own advice is to work with an experienced teacher (p.10, 65).</div>
+</section>
+
+<section class="sec" id="dreams">
+  <header><span class="kick">Twenty cases from the book</span><h2>Dream casebook</h2><p>Students reported dreams after practice; the author gave readings. Filter by theme. These are his interpretations, not a symbol dictionary.</p></header>
+  <div class="chips" id="dreamChips"></div>
+  <div class="tablewrap"><table><thead><tr><th>#</th><th>The dream</th><th>The author’s reading</th></tr></thead><tbody id="dreamRows"></tbody></table></div>
+</section>
+
+<section class="sec" id="traditions">
+  <header><span class="kick">Where it comes from</span><h2>Traditions &amp; claimed benefits</h2><p>The author argues muraqaba is the common thread in prophetic retreats and in other traditions’ meditation.</p></header>
+  <div class="tablewrap"><table><thead><tr><th>Figure</th><th>What the book says</th><th>Page</th></tr></thead><tbody id="tradRows"></tbody></table></div>
+  <h3 style="margin-top:30px">Benefits listed by the author (p.63)</h3>
+  <div class="chips" id="benefits"></div>
+  <p class="small muted">These benefits are claims from the book, not verified results.</p>
+</section>
+
+<section class="sec" id="safety">
+  <header><span class="kick">Read before practising</span><h2>Safety &amp; notes</h2></header>
+  <div id="safeList"></div>
+</section>
+
+<section class="sec" id="glossary">
+  <header><span class="kick">Terms</span><h2>Glossary</h2></header>
+  <input class="field" id="glSearch" placeholder="Filter terms" aria-label="Filter glossary" style="margin-bottom:12px">
+  <dl class="gl twocol" id="glList"></dl>
+  <p class="small muted" style="margin-top:40px">Source: <i id="srcLine"></i>. This guide paraphrases and reorganises the book; it is not a replacement for it or for a qualified teacher.</p>
+</section>
+</main>
+
+<div class="player" id="player" role="dialog" aria-modal="true" aria-label="Guided session">
+  <div class="ptop"><div><div class="pphase" id="pphase"></div><b class="sans" id="ptitle"></b></div><button class="btn sm" id="pclose">End</button></div>
+  <div class="pmid"><div class="orb" id="orb"></div><div class="pstep" id="pstep" aria-live="polite"></div></div>
+  <div class="pbot"><div class="pbar"><i id="pbar"></i></div>
+    <div class="pctl"><span class="clock" id="pclock">0:00</span>
+      <span style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="psound">Chime: on</button><button class="btn sm" id="pprev">Back</button><button class="btn sm" id="pskip">Skip step</button><button class="btn pri sm" id="ppause">Pause</button></span></div></div>
+  <div class="pfin" id="pfin"><h2>Session complete</h2><p>Stay seated a moment. Let the practice release slowly, then move and speak quietly (p.101).</p>
+    <div class="chips" id="pchips"></div><textarea class="field" id="pnote" placeholder="Optional note: what you noticed"></textarea>
+    <div style="display:flex;gap:8px"><button class="btn pri" id="psave">Save to log</button><button class="btn ghost" id="pdone" style="color:#ddd;border-color:#777">Close without saving</button></div></div>
+</div>
+
+<div class="search" id="search"><div class="sbox"><input id="sq" placeholder="Search guides, terms, chapters, stages…" aria-label="Search everything"><div class="sres" id="sres"></div></div></div>
+<div class="toast" id="toast" role="status"></div>
+<script>const BOOK={title:'Muraqaba: The Art and Science of Sufi Meditation',author:'Shaykh Khwaja Shamsuddin Azeemi',trans:'Translated by Syed Shahzad Reaz',pub:'Azeemi University Press, Karachi'};
+
+const CHAPTERS=[
+{p:7,t:'Introduction',s:'Muraqaba is a way of perceiving, not just a pose: it moves attention from the outer (zahir) senses to the inner (batin) ones, much as sleep does, but while awake. A teacher is needed to guard against overload.',tags:['theory']},
+{p:11,t:'About the Author · Translator’s Desk',s:'Biography of Shaykh Azeemi (b. 1927), patriarch of the Azeemia order, and the translator’s note.',tags:[]},
+{p:14,t:'Self and the Cosmos',s:'Humans are a microcosm. The five senses are bounded physically but unbounded spiritually. Muraqaba is presented as the most effective way to activate the inner senses.',tags:['theory']},
+{p:17,t:'Mental Concentration',s:'All skill starts with concentration. The mind is a receiver, like a radio, tuned by focus. “Law of Inventions” (p.18): deep focus on one idea brings discovery.',tags:['theory','method']},
+{p:21,t:'Spiritual Brain',s:'Intuition, the sixth sense and inspiration (Kekulé’s benzene dream) point to a second, hidden brain behind the outer one.',tags:['theory']},
+{p:24,t:'Waves of Thought',s:'Thoughts are ripples on a pond. Mental emptiness, meaning absorption in one idea until others fade, is the first lesson.',tags:['theory','method']},
+{p:26,t:'Third Eye',s:'Vision does not depend on the physical eye alone. Steady gaze without blinking quiets outer vision; inner vision then begins.',tags:['theory']},
+{p:29,t:'Film and Screen',s:'The mind has two screen layers: the outer one shows physical life, the inner one shows the hidden “film” of reality. Muraqaba shifts sight to the inner screen.',tags:['theory']},
+{p:32,t:'Motions of the Spirit',s:'Dreams show the spirit moving free of time and space. Muraqaba is entering that dream-state while fully awake.',tags:['theory']},
+{p:37,t:'Electrical System · Generators (latifa)',s:'Three currents (whim, thought/imagination, feeling) form three bodies: physical, luminous (aura), and pure light (nur).',tags:['theory']},
+{p:40,t:'Three Layers · Laws of Vision',s:'Three souls, six subtle centres (lataif), and the stages of waking and sleep. Vision runs whim → thought → imagination → sight (p.42).',tags:['theory']},
+{p:43,t:'Heart of the Cosmos',s:'Individual, species and cosmic consciousness. Merging individual attention into these gives telepathy-type abilities.',tags:['theory']},
+{p:46,t:'Concept of Unity',s:'Tawheed as the common ground of prophets and of the human family.',tags:['theory']},
+{p:48,t:'Muraqaba and Religion',s:'Contemplation (49), Cave of Hira (55), attention to God (55), prayer and muraqaba (57), dhikr and contemplation (58), world religions (59).',tags:['tradition'],subs:[[49,'Contemplation'],[55,'Cave of Hira'],[57,'Prayer & Muraqaba'],[58,'Dhikr'],[59,'World Religions']]},
+{p:61,t:'Benefits of Muraqaba',s:'Claimed physical and psychological benefits (list on p.63), including the author’s discussion of schizophrenia (61) and mania (62).',tags:['benefits']},
+{p:64,t:'Levels',s:'The student’s progress: drowsiness (65), colourful and true dreams (66, with 20 dream cases), future dreams (73).',tags:['levels']},
+{p:75,t:'Subtle Sensations',s:'Weightlessness, lights, then Idraak (76), Varood (77), Ilhaam (78), proof of Vahii (79), Kashf (82) with student reports.',tags:['levels']},
+{p:87,t:'Spiritual Journey · Fatah',s:'Shahood and its four stages (87); Fatah, the highest level (90), including the author’s own early experience.',tags:['levels']},
+{p:94,t:'Classification of Muraqaba · Practical Program',s:'Programme goals and rules; posture (95), timing and place (97), material help (98), imagination (98), avoidance (100), sleep (101), conserving energy (102).',tags:['method'],subs:[[95,'Posture'],[97,'Timing & place'],[98,'Imagination'],[100,'Avoidance'],[101,'Sleep & food'],[102,'Energy']]},
+{p:104,t:'Helpful Exercises',s:'Three breathing practices (104) and five istaghraaq (immersion) exercises (106).',tags:['method']},
+{p:108,t:'16-Week Program · Self-improvement · Immunity',s:'A four-month routine, a magnetism / personality programme, a nerve-strengthening routine.',tags:['method']},
+{p:111,t:'Spiritual Concept of Healing',s:'A dawn dhikr and muraqaba routine for illness; the author sees disease as having a mental/spiritual side.',tags:['method']},
+{p:112,t:'Muraqaba of Colored Lights',s:'Seven colours with traditional uses and case histories: blue (113), yellow (114), orange (115), green (115), red (116), violet (116), pink (116).',tags:['method']},
+{p:118,t:'Station of Ihsaan',s:'Awareness of God in prayer; daily prayer-linked plan.',tags:['method']},
+{p:120,t:'The Hidden World · Salat',s:'Prayer as concentration; muraqaba of forming prayer; imagining the Qur’an as speech.',tags:['method']},
+{p:122,t:'Muraqaba of Life after Death',s:'Method plus the author’s narrative of the afterlife city (123–125). Also Muraqaba Nur (126) and Kashf ul Qaboor (127).',tags:['method']},
+{p:128,t:'Shah Abdul Aziz story · Dress of Soul',s:'A traveller’s story from the grave, and a short essay on the body as the soul’s garment and the “book of records”.',tags:['tradition']},
+{p:132,t:'Haatif Ghaybi · Tafheem',s:'Listening to the voice of the unseen (132) and the muraqaba on the Name al-Aleem (133).',tags:['method']},
+{p:134,t:'Spiritual Journey: Heart, Unity, Negation, Void, Fana',s:'Sayr Afaaq / Sayr Anfas (134), then muraqaba of the heart (134), unity (135), negation (135), void (136), fana (137).',tags:['method']},
+{p:138,t:'Divine Names · Essence',s:'Muraqaba of the Name of the Essence (138).',tags:['method']},
+{p:140,t:'Tassawar Shaykh · Tasawwar Rasul · Divine Essence',s:'Link practices: the teacher (140), the Prophet (142), the Essence with eleven forms (143).',tags:['method']},
+{p:145,t:'Glossary · Suggested Reading · Index',s:'Terms (145), reading list (149), index (152).',tags:[]}
+];
+
+const FOUND=[
+{id:'f1',t:'Two senses, two lives',p:'7–10, 41',b:`<p>The book’s first move: every person lives in two states, <b>day senses</b> (diurnal, bound to time and space) and <b>night senses</b> (nocturnal, free of them). Sleep switches us to the night senses without our choosing. Muraqaba is a trained, deliberate way to enter that state without losing awareness.</p><p>Examples the author uses: losing track of time in an absorbing book; Moses’ forty “nights” (the verse names nights, not days); Imam Ali’s pain absent during prayer while surgeons worked.</p>`},
+{id:'f2',t:'The mind as a receiver',p:'17–19',b:`<p>Consciousness is like a radio: information streams from a deep source (the “Point of Self”) and the mind tunes to a narrow band. Better concentration widens what is received. Invention and discovery follow the same law: attention held on one point until it reveals its details.</p>`},
+{id:'f3',t:'Waves of thought and mental emptiness',p:'24–25',b:`<p>Thoughts arrive like ripples on a pond; you cannot see to the bottom while the surface moves. The first lesson of the practice is <b>mental emptiness</b>, but not “no thoughts at all”. It means holding one idea so firmly that other thoughts lose weight and fade, the way a writer or driver filters a noisy room.</p>`},
+{id:'f4',t:'Third eye and the screen of the mind',p:'26–31',b:`<p>Eyes are only part of seeing: attention must be present too (a sleeper with open eyes sees nothing). The mind holds two screens, an outer one for physical life and an inner one where a hidden “film” of reality plays. Fixed gaze and a still eyeball let the inner screen take over; the author likens it to a projector, its light and the screen.</p>`},
+{id:'f5',t:'Whim → thought → imagination → sight',p:'42, 87',b:`<p>Any perception passes four grades, depending on the intensity of the “ray” falling on an object: a faint <b>whim</b>, a <b>thought</b>, an <b>imagination</b> with form, then full <b>sight</b>. Spiritual vision is described as training attention so faint whims are brought up to sight. Try it in the lamp at the top of the page.</p>`},
+{id:'f6',t:'Three currents, three bodies',p:'37–39',b:`<p>Three “generators” (current 1: whim; current 2: thought and imagination; current 3: feeling, ascending or descending) build three bodies: the physical body, the luminous body (aura, <i>jism mithali</i>) and a body of pure light (<i>nur</i>). Ordinary awareness knows only the first; dreams and muraqaba reveal the second.</p>`},
+{id:'f7',t:'Three souls and six lataif',p:'40–41',b:`<p>Three layers of self, each with two subtle centres, are mapped onto the stages by which we wake and fall asleep. Use the explorer below.</p>`,extra:'latifa'},
+{id:'f8',t:'Individual, species and cosmic mind',p:'43–45',b:`<p>Beyond personal thoughts lies the mind of the species (why a kitten has a cat’s instincts) and, beyond it, the cosmic mind linking all creatures like bulbs on one power grid. If attention dissolves into these deeper layers, the author says, telepathy and wider observation become possible.</p>`},
+{id:'f9',t:'Dhikr becomes muraqaba',p:'58–59',b:`<p>Remembrance deepens in three stages: <b>dhikr lisani</b> (spoken), <b>dhikr qalbi</b> (silent, in the heart), <b>dhikr ruhi</b> (the meaning simply fills the mind). The third is called muraqaba. Example: the Name <i>al-Qadeer</i>, first said aloud, then silently, then held as a felt idea. Try it: “Dhikr to Muraqaba” in the practice library.</p>`},
+{id:'f10',t:'Prayer is muraqaba',p:'48, 57, 118',b:`<p>The author reads <i>salat</i> as connection. The hadith he cites defines <i>ihsan</i>: pray as if you see God, or as if God sees you. That is muraqaba carried inside ritual movement. Contemplation (<i>fikr</i>) paired with remembrance (<i>dhikr</i>) is, in his account, what Sufi orders institutionalised.</p>`},
+{id:'f11',t:'What the word means',p:'52–53',b:`<p><i>Muraqaba</i> comes from <i>raqeeb</i>, “watchful guardian”: guarding the mind from worrying thoughts and holding it on God, His attributes or signs. Classical voices the book quotes: Shah Waliullah (concentrate perception until everything else goes dormant), Ghauth Ali Shah (attention stays at the heart, on a Divine Name), al-Ghazali (invoke Allah in the heart with senses suspended).</p>`}
+];
+
+const LATIFA=[
+ {k:'Soul layer 1 — Lower self (nafs al-ammara / ruh hevani)',l:'Nafs (soul) + Qalb (heart)',w:'Waking stage 1: semi-waking, thoughts and actions converge → sphere of Soul',s:'—'},
+ {k:'',l:'',w:'Waking stage 2: alertness, mild exhilaration (khumaar) → sphere of Heart',s:'—'},
+ {k:'Soul layer 2 — Human self (nafs al-lawwama / ruh insani)',l:'Ruh (spirit) + Sirr (conscience)',w:'Waking stage 3: ecstasy (wajdani) → sphere of Spirit',s:'Sleep stage 1: drowsiness (ghanood) → sphere of Sirr'},
+ {k:'Soul layer 3 — Contented self (nafs al-mutma’inna / ruh azam)',l:'Khafi (mystery) + Akhfa (arcanum)',w:'—',s:'Sleep stage 2: light sleep → Khafi · Sleep stage 3: deep sleep → Akhfa'}
+];
+
+const STAGE4=[
+ {n:'Whim (wahma)',d:'A faint hint — you can barely tell it is there. The book: the most subtle thought, felt only in the depth of perception.'},
+ {n:'Thought',d:'The whim deepens into a thought: you know something about the object, but it has no picture yet.'},
+ {n:'Imagination',d:'The thought takes form in the mind’s eye; you can sketch its details inwardly.'},
+ {n:'Sight',d:'Form becomes figure and colour: it enters range of vision. The author says this is how all five senses work.'}
+];
+
+const FAMILIES=[
+ {k:'base',t:'Core method',d:'The general method every other muraqaba builds on.'},
+ {k:'light',t:'Conditioning',d:'Colour lights, magnetic waves and solar practice to steady nerves and mood.'},
+ {k:'heal',t:'Healing',d:'Dawn routine for illness; claims are the author’s, see safety.'},
+ {k:'devo',t:'Prayer & devotion',d:'Ihsan, forming salat, Qur’an as speech, dhikr to muraqaba.'},
+ {k:'unseen',t:'Unseen realms',d:'Nur, afterlife, graves of saints, the voice of the unseen, tafheem.'},
+ {k:'gnosis',t:'The inward path',d:'Heart, unity, negation, void, fana, Divine Names and Essence, sayr.'},
+ {k:'link',t:'Teacher & Prophet link',d:'Tassawar Shaykh and Tasawwar Rasul: absorbing character by attention.'}
+];
+
+const LEVELS=[
+{n:'Drowsiness',pg:65,one:'Earliest stage: you slip toward sleep and recall a hazy something.',d:`<p>New students often doze or float between waking and sleep. The author says awareness is simply overwhelmed by the inner lights at first, so little is remembered. Reports show brief shadows, a teacher’s faint image, short dream-scenes.</p><p><b>Book’s advice:</b> keep going; sit upright (never lie down, p.97); rest first if tired, then practise (p.101).</p>`},
+{n:'Colourful & true dreams',pg:66,one:'More vivid dreams, some colourful; a few come true.',d:`<p>As the link to the subconscious grows, dreams deepen. “True dreams” show future events literally. Teachers, the book says, instruct students through dreams. The book prints 20 dreams with the author’s readings (see Dream Casebook). Rule given on p.73: once a dream has been interpreted, don’t seek a second interpretation, and relate dreams only to someone qualified.</p>`},
+{n:'Subtle sensations',pg:75,one:'Weightlessness, flashes, coloured lights, currents, deep calm.',d:`<p>Lights that “negate gravity” build up: lightness, floating, seeing oneself as light, flashes like a camera, tingling electrical flow, sometimes a shock. Peace and problem-solving ability deepen. Reports I–III (p.75) describe white and coloured lights, a second body of light, and uncanny anticipation of others’ words.</p>`},
+{n:'Idraak (awareness)',pg:76,one:'Drowsiness ends; delicate thoughts take form and inner sounds begin.',d:`<p>A subtle thought that “has a form”: say “apple” and the picture occurs, too faint for the eye but felt. Hidden information may arrive as a low voice. Reports IV–VIII: inner sounds like surf, a voice calling one’s name, a whisper during an ascent.</p>`},
+{n:'Varood (inner vision)',pg:77,one:'Scenes appear before the inner eye with eyes closed.',d:`<p>Awareness deepens to vision. Concentration flickers because the mind isn’t used to this, and only part is remembered. Gradually observations become orderly. With eyes closed it is <i>varood</i>; with eyes open it is <i>shahood</i> (p.133).</p>`},
+{n:'Kashf & Ilhaam',pg:78,one:'Insights confirmed later; inner and outer senses run together.',d:`<p>Hearing may open before sight. Kashf first occurs involuntarily (an old friend comes to mind, then calls). When it matures, outer and inner senses work simultaneously and the student no longer needs closed eyes. This involuntary state is <b>ilhaam</b>. The author distinguishes this from <b>vahii</b> (prophetic revelation, ended with prophethood); kashf, ilhaam, <i>alqaa</i> (intuition) and true dreams continue (p.79–82).</p>`},
+{n:'Shahood',pg:87,one:'Witnessing the unseen: first sight, then hearing, touch, smell.',d:`<p>Four stages: seeing, hearing, touching, smelling the unseen. The author cites a Companion who saw angels but was told that with continued night vigils he could have shaken hands with them. A mature shahood needs real detachment from worldly affairs. The “Point of Essence” (<i>nuqta dhat</i>) is the doorway of the inner journey.</p>`},
+{n:'Fatah',pg:90,one:'Highest shahood: eyes held open as the cosmos unfolds.',d:`<p>The unseen is witnessed with eyes open amid ordinary routine. A second of fatah can span creation to end-time; the book connects it with the “Night of Power” being better than a thousand months (p.90).</p>`},
+{n:'Sayr Afaaq → Sayr Anfas',pg:134,one:'Journey outward through the heavens, then inward through the self.',d:`<p>First the student imagines the whole cosmos as a mirror reflecting Divine Lights (<i>afaaq</i>); later imagines <i>himself</i> as the mirror (<i>anfas</i>); finally even the mirror is negated, to approach the Essence.</p>`},
+{n:'Fana fi Shaykh → Rasul → Allah',pg:141,one:'Absorption in the teacher, then the Prophet, then the Divine.',d:`<p>Imagining the teacher passes his character to the student (<i>fana fi shaykh</i>, p.141). This leads to <i>fana fi rasul</i> (p.142) and, with concentration on the Essence, <i>fana fi Allah</i> (p.143). The glossary adds <i>baqa</i> — returning in an improved self after absorption.</p>`}
+];
+
+const PRE=[
+ {t:'Sit in your chosen posture, back straight but not rigid. Close your eyes.',s:40},
+ {t:'Tell yourself softly: “Everything is still and quiet, and this stillness is entering me.”',s:25},
+ {t:'Breathe slowly for a while. Don’t force the pace; let the rate settle by itself.',s:75}
+];
+const POST=[
+ {t:'Stay seated. Let the mind release the practice gradually, the way waking follows sleep.',s:80},
+ {t:'Walk slowly around the room. Avoid talking, or keep your voice low.',s:40}
+];
+const TEACHER='The book says to ask your spiritual master (murshid) first.';
+
+const LIGHTS=[
+ {c:'blue',n:'Blue',hex:'#5a7dff',pg:113,use:'nerve weakness, neck and back pain, depression, inferiority feeling, weak willpower',img:'You sit beneath the open sky. Blue light falls into your head, passes through the whole body and leaves through the feet into the earth.',extra:'Mental-weakness routine (p.110): before sunrise, sit facing north, do Breathing 1, then imagine blue light falling on your head like raindrops. 15–20 min; repeat before sleep.'},
+ {c:'yellow',n:'Yellow',hex:'#f2d24b',pg:114,use:'digestive complaints (gas, pain, constipation, ulcers)',img:'You sit beneath the sky. Yellow light falls into your head and is stored in the stomach.'},
+ {c:'orange',n:'Orange',hex:'#f08a3c',pg:115,use:'chest complaints (cough, asthma, lung conditions)',img:'Orange light is absorbed by the whole body (choose Method 1–4 below).'},
+ {c:'green',n:'Green',hex:'#4fbf7d',pg:115,use:'high blood pressure, skin disorders',img:'Green light is absorbed through the body. A case notes practising morning and bedtime with a green bulb in the bedroom at night.'},
+ {c:'red',n:'Red',hex:'#e05a5a',pg:116,use:'low blood pressure, depression, low energy, anaemia, fearfulness, hopelessness',img:'Red light streams into you from above and fills you.'},
+ {c:'violet',n:'Violet',hex:'#a67cf0',pg:116,use:'reproductive and sexual disorders, inferiority tied to them',img:'Violet light is absorbed by the body.'},
+ {c:'pink',n:'Pink',hex:'#f08fb8',pg:116,use:'hysteria, seizures, weak memory, paranoia, insecurity, isolation, negative thoughts',img:'Pink light envelops and is absorbed by you.'}
+];
+
+const GUIDES=[
+{id:'base',cat:'base',lvl:'Foundation',mins:20,title:'Foundation muraqaba',ar:'The general method',color:'#7b93ff',pg:'95–101',teacher:false,
+ sum:'Close the eyes, empty the mind, and hold one idea. The pattern behind every other practice in the book.',
+ purpose:'Concentration, calm, and the base skill for all other muraqabas.',
+ imagery:'Use one simple idea: for example “stillness is entering me”, or the sound of a Divine Name. Do not build a picture; do not add meanings.',
+ steps:[
+  {t:'Hold a single idea as the centre of attention. Don’t visualise a face or form, and don’t give it meanings: just be oriented toward it, the way you hold a worry in the background all day.',w:6},
+  {t:'Thoughts will arrive. Don’t fight or reject them: rejection echoes and deepens them. Let them pass and return to the idea, like a walker who keeps heading for the park.',w:4}
+ ],
+ notes:['Practise at the same time daily, 15–20 minutes at first; the average later is 20–45 min (p.95, 98).','Expect a flood of thoughts, fatigue and boredom early on; the author calls this the mind’s resistance and compares it to taming a horse (p.99).','Avoid lying down; sit. Wait ~2.5 hours after eating (p.102).']},
+
+{id:'dhikr',cat:'devo',lvl:'Foundation',mins:15,title:'Dhikr to muraqaba',ar:'dhikr lisani → qalbi → ruhi',color:'#52b8ae',pg:'58–59',teacher:false,
+ sum:'A single Divine Name moves from the tongue to the heart to pure felt meaning.',
+ purpose:'Builds one-pointed attention through repetition, then drops the repetition.',
+ imagery:'One Divine Name: the book’s example is al-Qadeer; the Azeemia order gives Ya Hayyu Ya Qayyum.',
+ steps:[
+  {t:'Stage 1, dhikr lisani: repeat the Name aloud or with the tongue, steady like a mantra. Keep the mind on it.',w:3},
+  {t:'Stage 2, dhikr qalbi: stop moving the tongue. Repeat silently, in the heart.',w:3},
+  {t:'Stage 3, dhikr ruhi (muraqaba): stop repeating. Let the meaning of the Name surround the mind as thought and imagination, without words.',w:4}
+ ],
+ notes:['The author says each step arrives when the previous one starts to feel like a burden (p.58).','Continuous practice, he writes, leads toward kashf and ilhaam (p.59).']},
+
+{id:'nur',cat:'unseen',lvl:'Intermediate',mins:20,title:'Muraqaba of Nur',ar:'Pure light',color:'#f3d98a',pg:126,teacher:false,
+ sum:'Imagine yourself and the universe immersed in the light that sources every other light.',
+ purpose:'Familiarity with nur, the light the author treats as the universe’s substance.',
+ imagery:'Choose one of the three forms below.',
+ steps:[
+  {t:'Form A: imagine the whole universe and all creatures, and yourself, immersed in an ocean of nur.',w:3},
+  {t:'Form B: imagine a stream of nur shining from the Divine Throne over the entire world, and onto you.',w:3},
+  {t:'Form C (the Light verse): imagine your whole body lit like the lamp inside a glass case.',w:3}
+ ],
+ notes:['Pick one form per sitting; the book lists them as alternatives.','The author notes the same idea in other traditions: the burning bush, the biblical “let there be light”, and the Hindu Jot (p.126).']},
+
+{id:'ihsan',cat:'devo',lvl:'Intermediate',mins:15,title:'Station of Ihsaan',ar:'Seeing, or being seen',color:'#52b8ae',pg:'118–119',teacher:true,
+ sum:'Awareness of God while at prayer: you see Him, or He sees you.',
+ purpose:'Builds the link between worshipper and Divine; makes ritual prayer a muraqaba.',
+ imagery:'“As if you see God, or as if He sees you.” Choose the one that feels workable.',
+ steps:[
+  {t:'Recite Darood Sharif 100 times and the Name Ya Hayyu Ya Qayyum 100 times (use a count; this can happen before the timer).',s:60},
+  {t:'Close your eyes. Imagine you are watching God, or that God is watching you.',w:6},
+  {t:'If forming the imagination is hard, imagine you stand before Him and He witnesses your every movement. Don’t worry if it doesn’t form at first.',w:3}
+ ],
+ notes:[TEACHER+' (p.119 note).','Daily plan (p.119): before Fajr, sit 5–10 min picturing the Divine Court, then pray with that imagination; before Zuhr/Asr, dhikr “Allah Haziri, Allah Naziri”; Maghrib, just the imagination; Isha, 5 min before; at night 10 min before sleep.','For a missed-prayer habit the book suggests 40 days of Fajr in congregation.']},
+
+{id:'salat',cat:'devo',lvl:'Foundation',mins:8,title:'Muraqaba of forming salat',ar:'Qayam us-salat',color:'#52b8ae',pg:'121',teacher:false,
+ sum:'A short pre-prayer practice to bring the heart into the prayer.',
+ purpose:'Concentration in ritual prayer.',
+ imagery:'God present at the Throne, with lights falling upon you beneath it.',
+ steps:[
+  {t:'After wudu, sit facing the Kaaba. Recite Darood Sharif three times and the Kalima Shahada three times.',s:40},
+  {t:'Close your eyes. For one to three minutes imagine God is present at the Divine Throne, His lights falling on you as you sit beneath it.',w:3},
+  {t:'Rise and pray, carrying the imagination into the prayer.',s:20}
+ ],
+ notes:['While reciting the Qur’an, the author asks you to imagine God conversing with you and Divine Mercy unveiling the “illuminating symbols” of the words (p.121).']},
+
+{id:'heal',cat:'heal',lvl:'Intermediate',mins:15,title:'Spiritual healing routine',ar:'Ya Hafeez · Ya Shaafi',color:'#e08aa6',pg:111,teacher:false,
+ sum:'Dawn dhikr followed by muraqaba under the Throne with the Name of the Healer.',
+ purpose:'The author’s programme for storing “healing power” alongside medical care.',
+ imagery:'You sit inside/under the Divine Throne; the lights of the Name Ya Shaafi (The Healer) fall on you.',
+ steps:[
+  {t:'Dhikr of Ya Hafeez (The Protector) until the Fajr time begins. Keep the mind clear.',s:120},
+  {t:'After Fajr: imagine sitting inside the Divine Throne, the lights of Ya Shaafi falling on you.',w:5}
+ ],
+ notes:['Routine: sleep early; rise at least half an hour before Fajr; wudu; Breathing 1 (p.111).','Author’s claim: “within a few months” the patient recovers. This is a devotional programme, not medical treatment; see Safety.']},
+
+{id:'magnet',cat:'light',lvl:'Foundation',mins:10,title:'Magnetic waves',ar:'Self-improvement, programme 1',color:'#7b93ff',pg:109,teacher:false,
+ sum:'Imagining a circle of magnetic current through and around the body.',
+ purpose:'Personality improvement and “magnetic attraction” per the author.',
+ imagery:'Waves rise through the body from the south pole to the north pole, then return outside you.',
+ steps:[
+  {t:'Lie on your back, legs apart, palms up. (The only lying-down practice in the book.) Inhale slowly through both nostrils.',s:30},
+  {t:'As you inhale, imagine magnetic waves travelling through your body from south to north. As you exhale, imagine them returning outside your body to the south, a circle.',w:6}
+ ],
+ notes:['Begin at 5 minutes; build to 10 (p.109). Do Breathing 1 beforehand, before sunrise.','Programme 3 adds solar watch (below). Diet: avoid greasy and spicy food, boiled meals preferred, no smoking, ≤2 cups tea or coffee (p.110).']},
+
+{id:'sun',cat:'light',lvl:'Foundation',mins:3,title:'Solar watch',ar:'Shughul aftaabi',color:'#f3b94d',pg:109,teacher:false,
+ sum:'Greet the sunrise with eyes closed, inhaling its light.',
+ purpose:'Store solar energy; steady the nerves.',
+ imagery:'Sunlight enters you on the in-breath and spreads through the body.',
+ steps:[
+  {t:'Before sunrise stand or squat on a roof, hill or terrace, facing the horizon.',s:15},
+  {t:'The moment the sun appears, CLOSE your eyes. Inhale slowly, imagine its energy entering as sunlight; when the lungs are full, picture it spreading through the body; exhale slowly.',w:6}
+ ],
+ notes:['Start with 1 minute; add a minute every 10 days up to 3 (p.109). On cloudy days imagine the sun on the horizon.','Never look at the sun with open eyes.']},
+
+{id:'aeraaf',cat:'unseen',lvl:'Advanced',mins:25,title:'Life after death',ar:'Muraqaba of aeraaf',color:'#9b84e6',pg:'122–126',teacher:true,
+ sum:'Suspend physical senses and travel in the body of light toward the realm after death.',
+ purpose:'To see the afterlife realm while alive, following the saying “die before death clutches thee”.',
+ imagery:'The depth of the grave, then flight in the body of light.',
+ steps:[
+  {t:'Lie comfortably and shift attention through each body part to relax it.',s:90},
+  {t:'Imagine yourself flying through space in your body of light, heading toward the life after death. The aura is said to become active.',w:4},
+  {t:'Then sit squatting, mouth closed. Inhale slowly through the nose, hold as long as comfortable (no strain), then exhale slowly. Imagine the depth of the grave and step inside.',w:4}
+ ],
+ notes:['The author’s own account follows (pp.122–126): a vast city of souls, punishments mirroring earthly wrongs, the angel of death. These are reports from his practice, not instructions.','Treat as advanced and teacher-led. Skip if the imagery of graves or death is distressing; see Safety.']},
+
+{id:'qaboor',cat:'unseen',lvl:'Advanced',mins:20,title:'Kashf ul Qaboor',ar:'Muraqaba at a saint’s grave',color:'#9b84e6',pg:127,teacher:true,
+ sum:'Meet the soul of a deceased saint by directing attention into the grave.',
+ purpose:'Spiritual blessing (faidh) and vision of a saint or Imam.',
+ imagery:'The grave as a depth; your attention falling into it.',
+ steps:[
+  {t:'Sit at the end of the grave opposite the headstone. Inhale slowly through the nose and exhale slowly without holding. Repeat eleven times.',s:120},
+  {t:'Close your eyes. Shift attention into the grave; let the mind sink, as if the grave were a depth and your attention falling into it.',w:6}
+ ],
+ notes:['The author limits this to tombs of saints or Imams (Ahlul Bayt). Avoid doing it on ordinary graves (p.127).','Success depends on “mental capacity and strength”, with consistency.']},
+
+{id:'hatif',cat:'unseen',lvl:'Advanced',mins:20,title:'Haatif Ghaybi',ar:'Voice of the unseen',color:'#9b84e6',pg:'132–133',teacher:false,
+ sum:'Imagine a pure inner sound until it becomes audible; then ask it a question.',
+ purpose:'Receiving guidance through inner hearing.',
+ imagery:'One sound: ringing bells · humming bees · a waterfall · a flute.',
+ steps:[
+  {t:'Sit in meditation posture with cotton balls in your ears (plain cotton is enough).',s:20},
+  {t:'Turn inward and imagine one of the sounds: a sweet melody of bells, the hum of bees, water falling, or a flute. Sustain it.',w:5},
+  {t:'Optional, once sound is established: repeat your question once or twice, then stop and put your whole focus on the sound. Answers are said to come as thoughts.',w:3}
+ ],
+ notes:['The book notes the sound arrives in many styles first, later words and sentences.','Also described: that Hindus call it Akash Vani and Sufis Saut-e-Sarmadi (p.132).']},
+
+{id:'tafheem',cat:'unseen',lvl:'Advanced',mins:25,title:'Tafheem: the Name al-Aleem',ar:'Cognitive mode',color:'#9b84e6',pg:133,teacher:true,
+ sum:'After midnight, empty the mind and rest on the Name al-Aleem (The All-Knowing).',
+ purpose:'Opening the knowledge of the Divine Names.',
+ imagery:'You hold the connective link of the Name al-Aleem.',
+ steps:[
+  {t:'Past midnight. Empty the mind of all thoughts.',s:60},
+  {t:'Concentrate on the Divine Name al-Aleem, imagining that you hold its connective link.',w:6}
+ ],
+ notes:['⚠ The book pairs this with keeping sleep to 2.5 hours in 24. That is an extreme regime that contradicts its own advice of ~6 hours (p.101), and sleep loss can destabilise mind and body. This guide does not recommend it.','Vision with eyes closed is varood; with eyes open it is shahood (p.133).']},
+
+{id:'heart',cat:'gnosis',lvl:'Advanced',mins:20,title:'Muraqaba of the heart',ar:'Qalb',color:'#7b93ff',pg:'134–135',teacher:true,
+ sum:'Look into the heart, see a black circle, and let the mind descend into it.',
+ purpose:'Entering the “circle” the author says contains the whole cosmos.',
+ imagery:'A black circle (chakra) within the heart. The deeper you go, the more you see.',
+ steps:[
+  {t:'Close your eyes and look inward to the heart through imaginative vision.',s:60},
+  {t:'Imagine a black circle in the heart. When the image forms, let the mind enter its depth.',w:6}
+ ],
+ notes:[TEACHER+' (p.135).','Compare with the seed analogy (p.134): the tiny seed holds the whole tree.']},
+
+{id:'unity',cat:'gnosis',lvl:'Intermediate',mins:15,title:'Muraqaba of unity',ar:'Tawheed',color:'#7b93ff',pg:135,teacher:false,
+ sum:'Contemplate the order of the cosmos and imagine one Light enveloping it.',
+ purpose:'Recognising a single mind behind all the universe’s movements.',
+ imagery:'A single Light envelops the entire universe.',
+ steps:[
+  {t:'Reflect on an order you can see: growth, rain cycles, the motion of stars. The book’s idea: one controlling mind behind all of it.',s:90},
+  {t:'Imagine that the unity of the cosmos is a Light, enveloping the entire universe.',w:6}
+ ],
+ notes:['Called “Unity of Works” (tawheed ifaali).']},
+
+{id:'la',cat:'gnosis',lvl:'Advanced',mins:20,title:'Muraqaba of negation (la)',ar:'La',color:'#7b93ff',pg:'135–136',teacher:true,
+ sum:'Drop into the depth of the self, aiming at thoughtlessness through recognising ignorance.',
+ purpose:'The first step of the gnostic into God-consciousness; leads toward fana.',
+ imagery:'Nothing: the awareness of “not knowing” itself.',
+ steps:[
+  {t:'Close your eyes as fully as possible. (The book uses a dark cloth over the eyes, p.98.)',s:30},
+  {t:'Put the mind into the depth of your own self, moving away from all thoughts and images. Aim for thoughtlessness by noticing ignorance within each thought.',w:6}
+ ],
+ notes:['Claimed results: contact with saints, Khidr and angels (p.136). The author treats awareness of ignorance as knowledge, “the knowledge of la”.']},
+
+{id:'void',cat:'gnosis',lvl:'Advanced',mins:20,title:'Muraqaba of void',ar:'Barri · Bahr · Void',color:'#7b93ff',pg:'136–137',teacher:true,
+ sum:'A graded descent into emptiness: desert, then ocean, then nothing at all.',
+ purpose:'Moves the mind out of conscious modes so the subconscious takes over.',
+ imagery:'Step 1 desert · Step 2 still ocean · Step 3 total void.',
+ steps:[
+  {t:'Muraqaba Barri: imagine an empty desert or plateau in total silence, everything motionless.',w:3},
+  {t:'Muraqaba Bahr: imagine a wide ocean, its water still, and you immersed in it. Imagine that you no longer exist and only God is present.',w:3},
+  {t:'Only after those are easy: imagine void. No people, trees, animals, sounds, no time or space, and no self.',w:3}
+ ],
+ notes:['The book gives void in stages because total emptiness is hard to imagine at first.','Fear, dissociation or derealisation are reasons to stop; see Safety.']},
+
+{id:'fana',cat:'gnosis',lvl:'Advanced',mins:20,title:'Muraqaba of fana',ar:'Annihilation of self',color:'#7b93ff',pg:137,teacher:true,
+ sum:'Imagine all traces of your life wiped out; you remain only as a point of light.',
+ purpose:'Entering the “realm of allegory” (alam mithaal) where forms and future events are held.',
+ imagery:'A point of light, free of self, linked to the realm from the beginning of time (azal) to the end (abad).',
+ steps:[
+  {t:'Close your eyes. Imagine that all signs of your life are wiped out.',s:60},
+  {t:'You exist only as a point of light, free of yourself, connected to the world that contains events from the beginning of time to the end.',w:6}
+ ],
+ notes:['The author illustrates with an essay in three stages (idea → words → paper) and an artist who keeps the eagle in his mind (p.137).']},
+
+{id:'dhat',cat:'gnosis',lvl:'Advanced',mins:20,title:'Name of the Essence',ar:'Allah in luminous letters',color:'#f3b94d',pg:'138–139',teacher:true,
+ sum:'Imagine the Name written in light in the heart, its rays over the body.',
+ purpose:'To link with the Name of the Essence and see the light of creativity and sovereignty.',
+ imagery:'The Name Allah in luminous letters in the heart.',
+ steps:[
+  {t:'Imagine that the Name of the Essence is written in luminous letters in your heart, its rays covering your whole body.',w:7},
+  {t:'As the imagination deepens, imagine the whole cosmos immersed in the light of the Name.',w:3}
+ ],
+ notes:['At its height, the author says, creation and sovereignty are revealed in the heart.']},
+
+{id:'shaykh',cat:'link',lvl:'Intermediate',mins:20,title:'Tassawar Shaykh',ar:'Imagining the teacher',color:'#e08aa6',pg:'140–141',teacher:true,
+ sum:'Attention on the teacher as the centre, absorbing his qualities.',
+ purpose:'To transfer the teacher’s outlook and attributes by sustained attention (fana fi shaykh).',
+ imagery:'The teacher before you, turning his attention toward you, lights and blessings flowing into you. Don’t draw his face (p.99).',
+ steps:[
+  {t:'Imagine the teacher sitting in front of you. Keep him as the centre of attention; don’t try to draw his face or body.',w:3},
+  {t:'Imagine his attention on you; lights and blessings flow into you.',w:3},
+  {t:'Finally: his essence envelops you; you see yourself as his personification. (The book calls this the best method as it negates ego.)',w:4}
+ ],
+ notes:['Based on the idea of transfer by closeness, as a child picks up its mother tongue (p.140).']},
+
+{id:'rasul',cat:'link',lvl:'Advanced',mins:20,title:'Tasawwar Rasul',ar:'Imagining the Prophet',color:'#e08aa6',pg:'142',teacher:true,
+ sum:'Imagine the Prophet’s mosque and dome, his name in your heart, and sitting before him.',
+ purpose:'Receives the “Light of Prophethood” (nur-e-nabuwat) toward fana fi rasul.',
+ imagery:'Green dome of Medina; the name written in light in your heart.',
+ steps:[
+  {t:'Imagine the Mosque of the Prophet or its green dome, and the lights of Medina absorbed into you.',w:3},
+  {t:'Imagine the name Muhammad written in luminous letters in your heart, lighting it.',w:3},
+  {t:'Imagine him seated; lights from his heart falling into yours; you sit with him and he is watching you.',w:4}
+ ],
+ notes:['The book adds that followers of other faiths use their own revered figure (Moses, Jesus, Krishna, Buddha, Zoroaster), after the guru practice (p.142).']},
+
+{id:'essence',cat:'gnosis',lvl:'Advanced',mins:20,title:'Visualising the Divine Essence',ar:'Eleven forms',color:'#f3b94d',pg:'143–144',teacher:true,
+ sum:'Eleven ways of directing the mind toward the Essence, one per sitting.',
+ purpose:'To witness tadjalli of the Essence (fana fi dhat).',
+ imagery:'Select one form below.',
+ forms:['Imagine the Name Allah written in light in the heart, brightening the whole cosmos.','Imagine yourself prostrating before Him at the Divine Throne.','Imagine the Divine Essence before you in the form of tadjalli (Divine Light).','Imagine God’s attention on you as lights shining on you.','Imagine God beholding you (muraqaba of royet).','Wherever you are, He is with you — muraqaba of ma’eeyet (company).','“Closer than your jugular vein” — muraqaba of aqrab.','“Wherever you turn, you see God.” He is everywhere.','“God encircles everything” — imagine Him enveloping the entire cosmos.','Imagine God as an endless sea; you a tiny drop immersed in it.','Imagine the whole universe annihilated; only God exists.'],
+ steps:[{t:'Pick one of the eleven forms and hold it as the single idea.',w:9}],
+ notes:['The book says that after excelling at these, with the teacher’s help, the student witnesses tadjalli of the Essence (p.144).']},
+
+{id:'sayr',cat:'gnosis',lvl:'Advanced',mins:25,title:'Sayr Afaaq & Sayr Anfas',ar:'Journey outward and inward',color:'#7b93ff',pg:134,teacher:true,
+ sum:'Imagine the cosmos as a mirror of Divine Light, then yourself as the mirror.',
+ purpose:'The two stages of the gnostic’s journey.',
+ imagery:'Mirror: first the universe, then yourself, then none.',
+ steps:[
+  {t:'Sayr Afaaq: imagine the entire cosmos is a mirror in which Divine Lights are reflected.',w:3},
+  {t:'Sayr Anfas: imagine that you yourself are the mirror in which the Divine Light and attributes shine.',w:3},
+  {t:'At the height, even the mirror within is negated to approach the Essence.',w:2}
+ ],
+ notes:['Alternative: imagine a bond from your heart to the Divine Throne, and the verses “He is with you wherever you are”, “closer than your vein”, “in your self, do you not see?” covering you (p.134).']}
+];
+
+// colour lights as guides
+LIGHTS.forEach(L=>GUIDES.push({
+ id:'light-'+L.c,cat:'light',lvl:'Foundation',mins:15,title:L.n+' light',ar:'Muraqaba of colour',color:L.hex,pg:L.pg+(L.c==='blue'?', 110':''),teacher:true,
+ sum:'Traditionally given for: '+L.use+'.',
+ purpose:'Colour absorbed in muraqaba is said to rebalance the “colour order” of the senses. Per the book, the teacher chooses the colour.',
+ imagery:L.img,
+ steps:[
+  {t:L.img,w:5},
+  {t:'Alternatives for absorbing the light: (1) the whole body absorbs it, (2) waves fall from the sky into your brain, (3) the entire surroundings are lit with that light, (4) you are immersed in a river of it.',w:3}
+ ],
+ notes:[L.extra||'Methods 1–4 are on p.112–113.','These uses are the author’s claims backed only by student testimonials. See Safety before treating any condition.']
+}));
+
+GUIDES.sort((a,b)=>({Foundation:0,Intermediate:1,Advanced:2}[a.lvl]-({Foundation:0,Intermediate:1,Advanced:2}[b.lvl])));
+
+const BREATH=[
+ {id:'settle',n:'Settling breath',i:4,h:0,o:6,src:'p.105',d:'Before muraqaba, breathe slowly for a while so the rate falls on its own. The book warns not to slow breathing deliberately during the practice. Timing here is a suggestion.'},
+ {id:'p1',n:'Practice 1 · whistling exhale',i:5,h:0,o:6,src:'p.104',d:'Squat, back straight, body loose. Exhale fully through both nostrils, inhale slowly through the nose, exhale through the mouth with rounded lips, no hold. Begin with 11 cycles, build to 21. Seconds here are a suggestion.'},
+ {id:'p2a',n:'Practice 2 · hold 5 s',i:5,h:5,o:6,src:'p.105',d:'Forearms on knees. Inhale slowly, hold 5 s, exhale through the mouth. Rest a few moments between rounds. Day 1: 5 cycles; add toward 11. Then raise the hold 5→6→7 s; the book allows up to 15 s at most.'},
+ {id:'p3a',n:'Practice 3 · alternate nostril 4-4-4',i:4,h:4,o:4,src:'p.105',d:'Thumb on right nostril: inhale left 4 s, hold 4 s; close left with the last two fingers; release thumb: exhale right 4 s, inhale right 4 s, hold 4 s; close right; exhale left 4 s = one cycle. Rest and repeat 3 times; add a cycle daily to 7.'},
+ {id:'p3b',n:'Practice 3 · hold 8 s',i:4,h:8,o:4,src:'p.105',d:'Once 7 cycles are easy at 4-4-4, raise only the hold time in 2-second steps.'},
+ {id:'p3c',n:'Practice 3 · final 4-16-8',i:4,h:16,o:8,src:'p.105',d:'The book’s end point: inhale 4, hold 16, exhale 8. Advanced; stop if dizzy.'}
+];
+const ISTAGH=[
+ {n:'Exercise 1',s:'Lying down. Relax the whole body, palms up, feet 6–12 inches apart. Close eyes; move attention to the right toe, then the left toe (and onward).',t:'about 10 min in the 16-week plan',pg:106},
+ {n:'Exercise 2 · counting breath',s:'Squat, back straight, palms on knees, eyes on a spot ~2 feet ahead. Breathe normally; count each in+out cycle to 10. If attention drifts, restart at 1. After a clean ten, do another; add tens up to 100, then three rounds of 100.',t:'about 5 min',pg:106},
+ {n:'Exercise 3 · breath as light',s:'Closed eyes. Inhale imagining air entering through the nose as light into the chest; exhale imagining the light leaving. Breathe normally and patiently.',t:'5–10 min',pg:106},
+ {n:'Exercise 4 · fixed gaze',s:'Dark room, squat, eyes on one point, do not blink. Blinking and watering at first are expected. Afterwards close the eyes, let the mind be empty, then wash the eyes with cold water.',t:'5–10 min',pg:106},
+ {n:'Exercise 5 · nose tip',s:'Squat, face slightly upward, eyes half-open on the tip of the nose. If the eyes strain or tear, close them briefly; never force tension.',t:'1 → 5 min',pg:106}
+];
+const PLAN=[
+ {w:[1,4],goal:'Peace and harmony; freedom from stress and worry',am:['Rise in the pre-dawn hours; freshen up','Breathing exercise 1','Lie down, head to the north: istaghraaq 1 (10 min)','Muraqaba: blue light falling on your head (15 min)'],pm:['Before bed: istaghraaq 1 (10 min)','Go straight to bed without talking to anyone']},
+ {w:[5,8],goal:'Freedom from fear and anxiety; end of hypertension',am:['Breathing exercise 1','Istaghraaq 2 (counting breath)','Istaghraaq 1, imagining green light falling on you like raindrops'],pm:['Istaghraaq 1','Muraqaba of pink light','Go straight to bed without talking']},
+ {w:[9,12],goal:'Heightened immunity and health',am:['Continue the weeks 5–8 programme exactly'],pm:['Continue weeks 5–8 evening routine']},
+ {w:[13,16],goal:'Deep, more relaxed sleep',am:['Breathing exercise 1','Instead of istaghraaq: squat, inhale imagining waves of energy and health entering from the air; exhale without holding (5 min)','Green-light imagination as before'],pm:['Istaghraaq 1','Pink-light muraqaba','Go straight to bed without talking']}
+];
+const PLANFOOD='Avoid fatty, hard-to-digest, spicy and high-sodium food. Seasonal fruit and vegetables are strongly recommended (p.109).';
+
+const DREAMS=[
+[1,'health','Green field, a grave-like hole with red liquid that becomes flame','Reads as high blood pressure; she is advised to see a gynecologist because she is pregnant.'],
+[2,'emotional','A goat/cow skinned alive, showing sadness but no pain','Hopelessness and depression, a weak mind; advice: brisk 30-minute walk before dawn.'],
+[3,'health','Spaghetti from the mouth, mountain and rain','Digestive ailment and unbalanced diet; see a physician.'],
+[4,'health','Polishing a pot, mangoes, black stains on clothes','Too much sugar causing trouble; follow the physician’s advice next outbreak.'],
+[5,'conscience','Son’s second wedding, with his wife taking part','An unkept promise; conscience is reminding.'],
+[6,'warning','Neighbour’s house fire spreading; dreamer wishes it grow','Warning about a behaviour in business he insists upon.'],
+[7,'conscience','Severing a daughter’s hand','Backbiting and uncontrolled anger; subconscious protests.'],
+[8,'emotional','Stabbed, locked up, jungle animals, bear chased off','Anxiety, insecurity, overly emotional, no balance, improper food.'],
+[9,'emotional','Fairy near the moon with a star-stick','Lifelong daydreaming and over-sensitivity; a pleasant dream to lighten.'],
+[10,'warning','Geometric figures turning into a tree','Close friends, some bad influences; be cautious.'],
+[11,'spiritual','Hearing the Prophet recite; white light writing on a wall; moon in hand','Spiritual aptitude since childhood; find a seasoned guide.'],
+[12,'spiritual','Running in circles in sand, circling the Kaaba, white pigeon = a Sufi master','A blessing from a qutb; arrange prayers, Qur’an recitation, shared meal.'],
+[13,'spiritual','Climbing stairs to a saint’s shrine; serpent under a basket giving light','Genuine interest in the path; the serpent matched a tonsillitis, complete the treatment.'],
+[14,'future','Shaykh visits home, men sent with olive oil as sign','Will manifest as seen; devotion activated the inner eye.'],
+[15,'conscience','Two lions in a tree; rescuing a cousin','On sexual thoughts: natural but indulging early or constantly wastes time and health; moderation.'],
+[16,'spiritual','Names of Allah and Muhammad written in the sky','Pure beliefs; success and better future.'],
+[17,'spiritual','Many moons with verses written on them','Teacher said bright fortune; the author gives the rule: one interpretation only, by a qualified person.'],
+[18,'future','Red star falls at her feet, becomes a grey bowl','Happy married life; a family member will rise to honour.'],
+[19,'future','Man in white takes documents; huge new market','Money arriving unexpectedly and bringing prosperity.'],
+[20,'future','Ship stranded when the ocean dries; rain frees it','Stuck plans, then help from a hidden source and eventual triumph.']
+];
+
+const TRAD=[
+ ['Abraham','Searches the sky: star, moon, sun; each sets, so none is God. The depth of this contemplation brings guidance.','53'],
+ ['Moses','Forty days and nights on the mountain; the verse names “nights”: nocturnal senses.','54'],
+ ['Mary','Retreat in the Temple for concentration; fruits out of season.','54'],
+ ['Jesus','Forty days in the wilderness (Mark 1:9–13); “the kingdom of God lies within”.','54, 59'],
+ ['Muhammad','Monthly retreats in the Cave of Hira; angels, then Gabriel; later night vigils.','55–56'],
+ ['Krishna & Arjuna','The Gita: a confused mind is focused through right resources, detachment and continued gayan.','59'],
+ ['Patanjali','Yoga Sutras: asanas (84), meditation to activate spiritual capacities.','60'],
+ ['Buddha','Six years of austerity, then 40 days beneath a tree; enlightenment on the 39th night; the eighth path element is purification of thought and meditation.','60']
+];
+const BENEFITS=['Control of blood pressure','Increased life expectancy','Improved eyesight and hearing','Reduced blood fat','Better performance of the heart','Enhanced creativity','Less irritability','Increased immunity','End of depression and anxiety','Reduced stress','More red blood corpuscles','Improved memory','Better decision-making','End of insomnia, deeper sleep','Less fear, more lightness','End of doubt','End of enmity and jealousy','Freedom from fear of witchcraft, ghosts and negative thoughts'];
+
+const SAFETY=[
+ ['Medical claims','The book credits muraqaba with easing ulcers, asthma, TB, hypertension, seizures, depression, even psychosis. The evidence offered is student testimonials. Treat these as the author’s tradition, not as established medicine. Keep seeing your doctor. The book itself says muraqaba for severe mental illness should be “under medical supervision” (p.62). Never stop or reduce prescribed medication on your own.'],
+ ['Mental health','Dissociative practices (void, fana, grave visualisation, long sleep reduction) can unsettle people prone to anxiety, mania, psychosis, or with trauma. The author himself warns of strain on consciousness and nervous breakdown without a teacher (p.10). If you feel unreal, frightened or lose sleep, stop and talk to a professional.'],
+ ['Breath-holding','The book builds holds progressively up to 15–16 seconds and gives the nostril work on p.105. Following its stages in order, rather than jumping ahead, is its own safeguard.'],
+ ['Eyes','The book advises a dark cloth or band over the eyes (p.98) and describes fixed gazing and tip-of-nose gazing (p.106), exactly as given in the guides. Editor’s note: a loose cover gives the same darkness if the band feels uncomfortable.'],
+ ['Ears','The book suggests cotton, with black pepper, in the ears to shut out noise (p.98). It is listed as optional there.'],
+ ['Sleep','The tafheem programme describes sleeping about 2.5 hours or less (p.133); elsewhere the book advises about six hours (p.101). Both figures are given in the guides as written.'],
+ ['Teacher','The author states some practices need permission and guidance from a murshid (Ihsan, heart, colours). Where no teacher is available, stay with the foundation, light and breath practices.'],
+ ['Scope of this guide','This is a study aid summarising a single book from the Azeemia Sufi tradition. Metaphysical statements (bodies of light, afterlife narratives, speeds of the aura) are the author’s teaching, presented as such and not verified.']
+];
+
+const GLOSS=[
+['Adab','Etiquette, respect.'],['Afaaq / Anfas','Horizons / selves: the outward and inward journeys (sayr).'],['Ahlul Bayt','Family of the Prophet.'],['Akhfa','Arcanum, the deepest of the six lataif; active in deep sleep.'],['Alam akbar / asghar','Macrocosm (universe) / microcosm (man).'],['Alam al-ghayb','The unseen realm.'],['Alam mithaal','Realm of allegory: where forms of events exist before they appear.'],['Amr','Divine Will / Command; also the source of the three currents.'],['Aeraaf','The realm of souls after death; also a Qur’anic height between heaven and hell.'],['Arsh','The Divine Throne.'],['Aura (jism mithali)','The luminous body between the physical body and the body of nur.'],['Baqa','Survival; returning in an improved self after fana.'],['Batin / Zahir','Inward / outward.'],['Dhikr','Remembrance of God; lisani (tongue), qalbi (heart), ruhi (spirit).'],['Fana','Annihilation, self-negation in the Divine.'],['Fana fi shaykh / rasul / Allah','Absorption in the teacher / the Prophet / God.'],['Fatah','Highest shahood: witnessing the unseen with open eyes.'],['Fikr','Contemplation; practical fikr is muraqaba.'],['Ghayb','Hidden, unseen.'],['Haatif Ghaybi','Voice of the unseen.'],['Idraak','Awareness: the first perception of inner information.'],['Ihsan','Awareness of God as if seeing or being seen.'],['Ilhaam','Inspiration; involuntary insight with inner and outer senses working together.'],['Ilm ladani','Primordial knowledge given directly by God.'],['Istaghraaq','Immersion: attention fixed until the mind absorbs.'],['Kashf','Unveiling: spiritual vision.'],['Kashf ul Qaboor','Vision at a grave of the afterlife.'],['Khafi','Mystery, a latifa active in light sleep.'],['Khilwat','Retreat, seclusion.'],['Lataif (sing. latifa)','Subtle centres, generators of the soul.'],['Murid / Murshid','Student / teacher.'],['Muraqaba / Muraqib','Meditation / one who is in it. From raqeeb: watchful.'],['Nafs','Soul; lower self (ammara), human self (lawwama), contented self (mutma’inna).'],['Nisbat','Spiritual link.'],['Nuqta dhat','Point of Essence: the inward doorway.'],['Nur','Invisible pure light, the stuff of creation in the author’s view.'],['Qalb','Heart: a latifa and the “circle” of the cosmos.'],['Qutb','High-ranking saint.'],['Roya sadiqa','True dream.'],['Ruh','Spirit.'],['Salat','Prayer; literally connection.'],['Sayr','Journey (Afaaq, Anfas).'],['Shahood','Witnessing the unseen; four stages.'],['Shughul aftaabi','Solar watch.'],['Sirr','Conscience, a latifa active in drowsiness.'],['Tadjalli','Divine Light, a reflection of the Essence not the Essence.'],['Tafheem','Cognitive mode: understanding by awareness.'],['Tasarruf','A master’s spiritual discretion.'],['Tassawar','Imagining; as a practice.'],['Tawheed','Unity of God.'],['Vahii','Prophetic revelation.'],['Varood','Inner vision with eyes closed.'],['Wajdani','Intuitive ecstasy.'],['Wahma','Whim: the faintest stage of a thought.'],['Wudu','Ritual ablution.']
+];
+const RULES=[
+ ['Same time daily','15–20 minutes at first; move to 20–45 later. Consistency beats intensity.',95],
+ ['Darkness and air','Dim or dark room with fresh air, neither hot nor cold; loose clothes.',97],
+ ['Sit up','Not lying in bed; lying leads to drowsiness. Lying is only used in a few listed exercises.',97],
+ ['Eat light','Wait ~2.5 hours after a meal. Eat simple food, a little less than full.',102],
+ ['Sleep','Around 6 hours for ordinary people; don’t mix muraqaba with sleep.',101],
+ ['Close gently','Stay seated after; walk slowly; talk softly.',101],
+ ['Moderation','Don’t start with long or irregular sessions: extremes breed avoidance.',100],
+ ['Guard energy','Avoid shouting, anger, needless worry; keep the mind occupied with worthwhile things.',102],
+ ['Report','Without a teacher nearby, send a monthly journal of experiences to the order (p.94).',94]
+];
+
+(()=>{
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mem={};
+const store={get(k,d){try{const v=localStorage.getItem('mq.'+k);return v==null?(k in mem?mem[k]:d):JSON.parse(v)}catch(e){return k in mem?mem[k]:d}},
+ set(k,v){mem[k]=v;try{localStorage.setItem('mq.'+k,JSON.stringify(v))}catch(e){}}};
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2200)};
+
+/* theme */
+const root=document.documentElement;
+const saved=store.get('theme',null);
+root.dataset.theme=saved||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+$('#themeBtn').onclick=()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';store.set('theme',root.dataset.theme)};
+$('#menuBtn').onclick=()=>$('#rail').classList.toggle('open');
+$$('#nav a').forEach(a=>a.addEventListener('click',()=>$('#rail').classList.remove('open')));
+$$('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+function go(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+
+/* scroll spy */
+const links=$$('#nav a');
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-30% 0px -60% 0px'});
+$$('main section').forEach(s=>io.observe(s));
+
+/* stars */
+(()=>{const c=$('#stars'),x=c.getContext('2d');let W,H,S=[];
+ const init=()=>{W=c.width=innerWidth;H=c.height=innerHeight;S=Array.from({length:Math.round(W*H/16000)},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.2,p:Math.random()*6}))};
+ init();addEventListener('resize',init);
+ const draw=t=>{x.clearRect(0,0,W,H);S.forEach(s=>{x.globalAlpha=.35+.35*Math.sin(t/2600+s.p);x.fillStyle='#fff';x.beginPath();x.arc(s.x,s.y,s.r,0,6.3);x.fill()});requestAnimationFrame(draw)};
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)requestAnimationFrame(draw)})();
+
+/* ---------- hero lamp ---------- */
+(()=>{const r=$('#lamp'),out=$('#lampOut'),txt=$('#lampTxt'),btns=$('#lampBtns');
+ const marks=[10,38,68,95];
+ STAGE4.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.n.split(' ')[0];b.onclick=()=>{r.value=marks[i];up()};btns.append(b)});
+ function up(){const v=+r.value,i=v<25?0:v<52?1:v<80?2:3;out.textContent=STAGE4[i].n;txt.textContent=STAGE4[i].d;
+  $$('button',btns).forEach((b,j)=>b.classList.toggle('on',j===i));
+  $('#blurN').setAttribute('stdDeviation',(16*(1-v/100)).toFixed(1));
+  $('#apple').setAttribute('opacity',(.08+.92*Math.pow(v/100,1.5)).toFixed(2));
+  $('#halo').setAttribute('opacity',(.08+.92*v/100).toFixed(2));$('#halo').setAttribute('r',90+120*v/100);
+  $('#flame').style.transform='scale('+(.7+.5*v/100)+')'}
+ r.oninput=up;up()})();
+
+/* ---------- book map ---------- */
+(()=>{const tags=[['all','All'],['theory','Theory'],['method','Methods & practices'],['levels','Stages & experiences'],['tradition','Traditions'],['benefits','Benefits']];let cur='all';
+ const chips=$('#mapChips');
+ tags.forEach(([k,l])=>{const b=document.createElement('button');b.className='chip'+(k==='all'?' on':'');b.textContent=l;b.onclick=()=>{cur=k;$$('.chip',chips).forEach(c=>c.classList.toggle('on',c===b));draw()};chips.append(b)});
+ function draw(){$('#chlist').innerHTML='<div class="chlist">'+CHAPTERS.filter(c=>cur==='all'||c.tags.includes(cur)).map(c=>`<div class="ch"><div class="p">p.${c.p}</div><div><h4>${esc(c.t)}</h4><p>${esc(c.s)}</p>${c.subs?`<div class="sub">${c.subs.map(s=>`<span class="tag">${esc(s[1])} · ${s[0]}</span>`).join('')}</div>`:''}</div></div>`).join('')+'</div>'}
+ draw()})();
+
+/* ---------- foundations ---------- */
+(()=>{const L=$('#foundList');
+ L.innerHTML=FOUND.map((f,i)=>`<details ${i===0?'open':''}><summary>${esc(f.t)} <span class="pg">p.${f.p}</span></summary><div class="body">${f.b}${f.extra==='latifa'?latifaTable():''}</div></details>`).join('');
+ function latifaTable(){return `<div class="tablewrap"><table><thead><tr><th>Soul layer</th><th>Subtle centres</th><th>Waking</th><th>Sleep</th></tr></thead><tbody>${LATIFA.map(r=>`<tr><td>${esc(r.k)}</td><td>${esc(r.l)}</td><td>${esc(r.w)}</td><td>${esc(r.s)}</td></tr>`).join('')}</tbody></table></div><p class="small muted" style="margin-top:8px">Each transition between states begins with a moment of stillness (p.41). That is the same stillness muraqaba cultivates.</p>`}
+ $('#dayNight').innerHTML=[
+ ['Day senses','Diurnal. Tied to time and space; driven by blinking and moving eyes; attention shifts every moment; sees the outer film.','#f3b94d'],
+ ['Night senses','Nocturnal. Free of time and space; used in dreams; attention can sit on one point; sees the inner film. Muraqaba aims to enter this state awake.','#7b93ff']
+ ].map(c=>`<div class="card" style="border-top:3px solid ${c[2]}"><h3>${c[0]}</h3><p>${c[1]}</p></div>`).join('')})();
+
+/* ---------- methodology ---------- */
+(()=>{const count=k=>GUIDES.filter(g=>g.cat===k).length;
+ const layers=[
+ ['Prepare','Place, posture, time, body.','Dark airy room · upright seat · same time daily · light food, enough sleep · conserve energy.'],
+ ['Train concentration','Breathing practices and immersion drills (Breath & focus lab).','Three breath practices · five istaghraaq drills · dhikr stage by stage.'],
+ ['Learn the core technique','Empty the mind, hold one idea, let thoughts pass.','See “core technique” below; then the Foundation muraqaba guide.']
+ ];
+ let h=layers.map((l,i)=>`<div class="layer"><h3>${l[0]}</h3><p>${l[1]} ${l[2]}</p></div>`).join('');
+ h+=`<div class="layer"><h3>Choose a family of muraqaba</h3><p>Per the book, an experienced teacher assigns these by temperament and need (p.94). Tap a family to filter the library.</p><div class="fam">${FAMILIES.map(f=>`<button data-fam="${f.k}"><b>${f.t}</b><span>${f.d}</span><i>${count(f.k)} guide${count(f.k)>1?'s':''}</i></button>`).join('')}</div></div>`;
+ h+=`<div class="layer"><h3>Receive the fruits</h3><p>Drowsiness → dreams → subtle sensations → awareness → vision → witnessing. See <a href="#levels">Stages of the path</a>.</p></div>`;
+ $('#atlas').innerHTML=h;
+ $$('[data-fam]').forEach(b=>b.onclick=()=>{state.fam=b.dataset.fam;closeDetail();drawLib();syncChips();go('library')});
+ $('#rules').innerHTML=RULES.map(r=>`<div class="card"><h4>${r[0]} <span class="pg">p.${r[2]}</span></h4><p class="small">${esc(r[1])}</p></div>`).join('');
+ $('#posture').innerHTML=[
+ ['Cross-legged','On floor or cushion, left leg folded over the right thigh; neck and back straight but not tense; hands on knees or in the middle.','95'],
+ ['Prayer-sitting','If the above is uncomfortable, sit as Muslims sit in prayer. Don’t bend the back; don’t make it rigid.','96'],
+ ['Hugging the knees','Sit on the hips, knees up to the chest, arms around them, body leaning slightly forward. Allows long sittings without tiring.','96'],
+ ['Environment','Neither hot nor cold; as dark as possible, fresh air; loose clothing. Lights out before, during and a few minutes after.','97'],
+ ['Imagination, not picturing','Surrender other thoughts and focus on one idea. Don’t draw the teacher’s face or the colour of the light; just orient to it.','98–99'],
+ ['Optional aids','Dark eye cover; cotton (with black pepper) in the ears. Optional (p.98).','98']
+ ].map(c=>`<div class="card"><h4>${c[0]} <span class="pg">p.${c[2]}</span></h4><p class="small">${c[1]}</p></div>`).join('');
+ $('#times').innerHTML=[
+ ['Before dawn','Best overall: the day’s fatigue is slept off and the night senses still linger. Also best for breath work (p.105).'],
+ ['Early afternoon','The book lists it among the four still periods.'],
+ ['About an hour before sunset','As the earth’s orbital speed eases, senses begin to shift toward night mode.'],
+ ['After midnight','Night senses strongest; unsuitable if too tired and you fall asleep.']
+ ].map(c=>`<div class="card"><h4>${c[0]}</h4><p class="small">${c[1]}</p></div>`).join('');
+ $('#obstacles').innerHTML=[
+ ['Thoughts flood in','Normal. Don’t suppress them. The more you try to calm the mind, the stronger the influx at first. Return to the idea (p.99–100).'],
+ ['I feel I can’t do it','The author calls this a superstition born of the mind’s resistance. Persist with regular sessions (p.99).'],
+ ['Excuses and skipping','Consciousness invents reasons: tiredness, noise, “tomorrow”. People find time for things they truly want (p.100–101).'],
+ ['Drowsiness','Rest first, sit up, do a few minutes of deep breathing with the idea of energy entering the body (p.101).'],
+ ['Heat or overwhelm','One student shortened sessions when heat became unbearable (p.78). Reduce the length; consult a teacher.'],
+ ['Leaking energy','Anger, loud speech, worry and overindulgence scatter the focus you build (p.102).']
+ ].map(o=>`<details><summary>${o[0]}</summary><div class="body"><p>${o[1]}</p></div></details>`).join('')})();
+
+/* ---------- library ---------- */
+const state={fam:'all',lvl:'all',q:'',cur:null,mins:20,form:0};
+function syncChips(){$$('#famChips .chip').forEach(c=>c.classList.toggle('on',c.dataset.k===state.fam));$$('#lvlChips .chip').forEach(c=>c.classList.toggle('on',c.dataset.k===state.lvl))}
+(()=>{const f=$('#famChips'),l=$('#lvlChips');
+ [['all','All families'],...FAMILIES.map(x=>[x.k,x.t])].forEach(([k,t])=>{const b=document.createElement('button');b.className='chip';b.dataset.k=k;b.textContent=t;b.onclick=()=>{state.fam=k;syncChips();drawLib()};f.append(b)});
+ [['all','All levels'],['Foundation','Foundation'],['Intermediate','Intermediate'],['Advanced','Advanced']].forEach(([k,t])=>{const b=document.createElement('button');b.className='chip';b.dataset.k=k;b.textContent=t;b.onclick=()=>{state.lvl=k;syncChips();drawLib()};l.append(b)});
+ $('#gSearch').oninput=e=>{state.q=e.target.value.toLowerCase();drawLib()};syncChips()})();
+$('#statG').textContent=GUIDES.length;
+const lcls={Foundation:'f',Intermediate:'m',Advanced:'a'};
+function drawLib(){const g=GUIDES.filter(x=>(state.fam==='all'||x.cat===state.fam)&&(state.lvl==='all'||x.lvl===state.lvl)&&(!state.q||(x.title+x.ar+x.sum+x.purpose+x.imagery).toLowerCase().includes(state.q)));
+ $('#gGrid').innerHTML=g.length?g.map(x=>`<button class="card gcard" data-id="${x.id}"><span class="glow" style="background:${x.color}"></span><h3>${esc(x.title)}</h3><p>${esc(x.sum)}</p><div class="meta"><span class="tag ${lcls[x.lvl]}">${x.lvl}</span><span class="tag">${x.mins} min</span>${x.teacher?'<span class="tag t">teacher advised</span>':''}</div></button>`).join(''):'<p class="muted">No guide matches. Clear a filter.</p>';
+ $$('.gcard').forEach(b=>b.onclick=()=>openDetail(b.dataset.id))}
+drawLib();
+
+function closeDetail(){$('#gDetail').classList.remove('open');$('#libList').style.display='';state.cur=null}
+function guideSteps(g){return PRE.concat(g.steps.map(s=>s)).concat(POST)}
+function openDetail(id,scroll=true){const g=GUIDES.find(x=>x.id===id);if(!g)return;state.cur=g;state.mins=g.mins;state.form=0;
+ $('#libList').style.display='none';$('#wizard').style.display='none';const d=$('#gDetail');d.classList.add('open');
+ const forms=g.forms?`<h4>Choose the form for today</h4><div id="formSel" style="display:grid;gap:6px;margin-bottom:16px">${g.forms.map((f,i)=>`<label class="chk"><input type="radio" name="form" value="${i}" ${i===0?'checked':''}><span>${i+1}. ${esc(f)}</span></label>`).join('')}</div>`:'';
+ const durs=[5,10,15,20,30,45].filter((v,i,a)=>true);
+ d.innerHTML=`<button class="backlink" id="back">← All practices</button>
+ <div class="card" style="border-top:4px solid ${g.color}"><span class="kick">${esc(g.ar)} · book p.${g.pg}</span><h2 style="margin-bottom:.2em">${esc(g.title)}</h2>
+ <p>${esc(g.purpose)}</p><div style="margin-bottom:8px"><span class="tag ${lcls[g.lvl]}">${g.lvl}</span>${g.teacher?'<span class="tag t">teacher advised</span>':''}<span class="tag">${FAMILIES.find(f=>f.k===g.cat).t}</span></div>
+ <div class="note"><b class="t">The one idea:</b> ${esc(g.imagery)}</div>
+ ${g.teacher?`<div class="note warn"><b class="t">Teacher.</b> The book presents this as guided by a murshid. If you have none, treat this as study material, or begin with the Foundation guides.</div>`:''}
+ ${forms}
+ <h4>Session length</h4><div class="durs" id="durs">${durs.map(v=>`<button class="chip ${v===g.mins?'on':''}" data-m="${v}">${v} min</button>`).join('')}</div>
+ <div style="margin:16px 0 22px"><button class="btn pri" id="begin">Begin guided session</button></div>
+ <h4>Steps</h4><ol class="steps" id="stepList"></ol>
+ ${g.notes.length?`<h4 style="margin-top:20px">Notes from the book</h4>${g.notes.map(n=>`<div class="note">${esc(n)}</div>`).join('')}`:''}
+ <div class="note warn"><b class="t">Safety.</b> Practise sitting up, never forcing. Medical uses are the author’s claims; keep your doctor. <a href="#safety">Read more</a>.</div></div>`;
+ const sl=$('#stepList');sl.innerHTML=guideSteps(g).map((s,i)=>`<li>${esc(s.t)}<small>${s.s?(s.s<60?s.s+' s':Math.round(s.s/60*10)/10+' min'):'flexible time'}</small></li>`).join('');
+ $('#back').onclick=()=>{closeDetail();history.replaceState(null,'','#library');go('library')};
+ $$('#durs .chip').forEach(c=>c.onclick=()=>{state.mins=+c.dataset.m;$$('#durs .chip').forEach(x=>x.classList.toggle('on',x===c))});
+ $$('input[name=form]').forEach(r=>r.onchange=()=>state.form=+r.value);
+ $('#begin').onclick=()=>startSession(g);
+ if(scroll)go('library')}
+
+/* wizard */
+(()=>{const w=$('#wizard');const ans={goal:null,exp:null,teacher:null};
+ const Q=[['goal','What are you after?',[['calm','Calm and focus'],['body','Steadier nerves and mood'],['devotion','Deeper prayer and devotion'],['unseen','Inner experience'],['path','The inward path (gnosis)']]],['exp','How long have you practised?',[['new','Not yet / just starting'],['some','A few weeks regularly'],['est','Months, consistently']]],['teacher','Do you have a teacher?',[['yes','Yes'],['no','No']]]];
+ function draw(){w.innerHTML='<h3>Help me choose</h3>'+Q.map(q=>`<div class="wq" style="margin-bottom:12px"><h4>${q[1]}</h4><div class="opts">${q[2].map(o=>`<button class="opt ${ans[q[0]]===o[0]?'on':''}" data-q="${q[0]}" data-v="${o[0]}">${o[1]}</button>`).join('')}</div></div>`).join('')+'<div id="wres"></div>';
+  $$('.opt',w).forEach(b=>b.onclick=()=>{ans[b.dataset.q]=b.dataset.v;draw()});
+  if(ans.goal&&ans.exp&&ans.teacher){
+   const want={calm:['base','dhikr','light-blue','nur'],body:['base','light-blue','light-green','magnet','sun','light-pink'],devotion:['base','salat','dhikr','ihsan','nur'],unseen:['base','nur','hatif','aeraaf','qaboor'],path:['base','dhikr','unity','heart','void','fana','dhat','sayr']}[ans.goal];
+   let r=want.map(id=>GUIDES.find(g=>g.id===id)).filter(Boolean);
+   if(ans.teacher==='no')r=r.filter(g=>!g.teacher||g.lvl==='Foundation').slice(0,5);
+   if(ans.exp==='new')r=r.filter(g=>g.lvl==='Foundation'||g.id==='dhikr');
+   if(ans.exp==='some')r=r.filter(g=>g.lvl!=='Advanced');
+   if(!r.length)r=[GUIDES.find(g=>g.id==='base')];
+   $('#wres',w).innerHTML=`<h4>Suggested order</h4><ol class="steps">${r.map(g=>`<li><a href="#" data-g="${g.id}"><b>${esc(g.title)}</b></a> · ${g.mins} min<small>${esc(g.sum)}</small></li>`).join('')}</ol><p class="small muted">The book suggests starting with foundation sittings and adding practices as a teacher assigns them (p.94). Advanced ones are listed only if you have a teacher.</p>`;
+   $$('[data-g]',w).forEach(a=>a.onclick=e=>{e.preventDefault();openDetail(a.dataset.g)})}}
+ $('#wizOpen').onclick=()=>{closeDetail();w.style.display='block';draw();go('library')};
+})();
+
+/* ---------- session player ---------- */
+let P=null;
+const player=$('#player');
+function chime(f=528,d=1.4){if(!P||!P.sound)return;try{const a=P.ctx||(P.ctx=new (window.AudioContext||window.webkitAudioContext)());const o=a.createOscillator(),g=a.createGain();o.frequency.value=f;o.type='sine';g.gain.setValueAtTime(.0001,a.currentTime);g.gain.exponentialRampToValueAtTime(.18,a.currentTime+.05);g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+d);o.connect(g).connect(a.destination);o.start();o.stop(a.currentTime+d)}catch(e){}}
+function startSession(g){
+ let steps=guideSteps(g).map(s=>({...s}));
+ if(g.forms){const f=g.forms[state.form];steps=steps.map(s=>s.w?{...s,t:'Form '+(state.form+1)+': '+f}:s)}
+ const fixed=steps.reduce((a,s)=>a+(s.s||0),0),W=steps.reduce((a,s)=>a+(s.w||0),0);
+ const total=Math.max(state.mins*60,fixed+60*Math.max(1,steps.filter(s=>s.w).length));
+ const core=total-fixed;steps.forEach(s=>{s.d=s.s||Math.round(core*s.w/W)});
+ const dur=steps.reduce((a,s)=>a+s.d,0);
+ P={g,steps,i:0,el:0,total:dur,paused:false,sound:P?P.sound!==false:true,last:performance.now(),t0:0};
+ player.style.setProperty('--gc',g.color);player.classList.remove('done');player.classList.add('open');document.body.style.overflow='hidden';
+ $('#ptitle').textContent=g.title;$('#psound').textContent='Chime: '+(P.sound?'on':'off');$('#ppause').textContent='Pause';
+ showStep();chime(440,1.6);tick.id=setInterval(tick,250);
+ try{navigator.wakeLock&&navigator.wakeLock.request('screen').then(l=>P&&(P.wl=l)).catch(()=>{})}catch(e){}
+ breatheOrb()}
+function stepStart(i){return P.steps.slice(0,i).reduce((a,s)=>a+s.d,0)}
+function showStep(){const s=P.steps[P.i];$('#pstep').textContent=s.t;const ph=i=>i<PRE.length?'Settling':i>=P.steps.length-POST.length?'Closing':'Core practice';$('#pphase').textContent=ph(P.i)+' · step '+(P.i+1)+' of '+P.steps.length}
+function tick(){if(!P||P.paused){if(P)P.last=performance.now();return}
+ const n=performance.now();P.el+=(n-P.last)/1000;P.real=(P.real||0)+(n-P.last)/1000;P.last=n;
+ while(P.i<P.steps.length&&P.el>=stepStart(P.i+1)){P.i++;if(P.i<P.steps.length){showStep();chime(P.i>=P.steps.length-POST.length?396:528)}}
+ if(P.i>=P.steps.length)return finish();
+ const rem=Math.max(0,P.total-P.el);$('#pclock').textContent=Math.floor(rem/60)+':'+String(Math.floor(rem%60)).padStart(2,'0');$('#pbar').style.width=(100*P.el/P.total)+'%'}
+tick.id=0;
+function breatheOrb(){const o=$('#orb');if(!P)return;o.style.transform=(P.big=!P.big)?'scale(1)':'scale(.6)';clearTimeout(breatheOrb.t);breatheOrb.t=setTimeout(breatheOrb,4000)}
+function finish(){clearInterval(tick.id);clearTimeout(breatheOrb.t);chime(396,2.4);player.classList.add('done');P.done=true;
+ const c=$('#pchips');c.innerHTML='';P.sel=new Set();['Drowsy','Many thoughts','Calm','Lightness','Lights','Images','Sounds','Warmth','Fear'].forEach(x=>{const b=document.createElement('button');b.className='chip';b.textContent=x;b.onclick=()=>{P.sel.has(x)?P.sel.delete(x):P.sel.add(x);b.classList.toggle('on')};c.append(b)})}
+function endSession(){clearInterval(tick.id);clearTimeout(breatheOrb.t);if(P&&P.wl)try{P.wl.release()}catch(e){}player.classList.remove('open','done');document.body.style.overflow='';const snd=P?P.sound:true;P={sound:snd}}
+$('#pclose').onclick=()=>{if(P&&P.steps&&!P.done&&P.el>60){finish();P.partial=true}else endSession()};
+$('#pdone').onclick=endSession;
+$('#ppause').onclick=()=>{if(!P||!P.steps)return;P.paused=!P.paused;$('#ppause').textContent=P.paused?'Resume':'Pause'};
+$('#pskip').onclick=()=>{if(P&&P.steps){P.el=P.i<P.steps.length-1?stepStart(P.i+1):P.total;P.last=performance.now()}};
+$('#pprev').onclick=()=>{if(P&&P.steps){P.el=P.i>0&&P.el-stepStart(P.i)<4?stepStart(P.i-1):stepStart(P.i)}};
+$('#psound').onclick=()=>{P.sound=!P.sound;$('#psound').textContent='Chime: '+(P.sound?'on':'off')};
+$('#psave').onclick=()=>{const log=store.get('log',[]);log.unshift({d:new Date().toISOString(),g:P.g.title,m:Math.max(1,Math.round((P.real||0)/60)),tags:[...P.sel],n:$('#pnote').value.trim()});store.set('log',log.slice(0,200));$('#pnote').value='';endSession();drawLog();toast('Saved to your practice log')};
+addEventListener('keydown',e=>{if(player.classList.contains('open')){if(e.code==='Space'&&e.target.tagName!=='TEXTAREA'){e.preventDefault();$('#ppause').click()}if(e.key==='Escape')$('#pclose').click()}});
+function drawLog(){const log=store.get('log',[]);const b=$('#logbox');
+ if(!log.length){b.innerHTML='<p class="muted" style="margin:0">Nothing yet. Finish a guided session and save how it went; entries stay on this device.</p>';return}
+ const days=new Set(log.map(l=>l.d.slice(0,10)));let streak=0;const d=new Date();for(;;){const k=d.toISOString().slice(0,10);if(days.has(k)){streak++;d.setDate(d.getDate()-1)}else if(streak===0&&k===new Date().toISOString().slice(0,10)){d.setDate(d.getDate()-1)}else break}
+ b.innerHTML=`<p class="sans small"><b>${log.length}</b> sessions · <b>${log.reduce((a,l)=>a+l.m,0)}</b> minutes · streak <b>${streak}</b> day${streak===1?'':'s'}</p>`+log.slice(0,8).map(l=>`<div style="padding:8px 0;border-top:1px solid var(--line)"><b class="sans">${esc(l.g)}</b> <span class="pg">${new Date(l.d).toLocaleDateString()} · ${l.m} min</span>${l.tags.length?'<div>'+l.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')+'</div>':''}${l.n?`<p class="small muted" style="margin:4px 0 0">${esc(l.n)}</p>`:''}</div>`).join('')+`<p style="margin-top:10px"><button class="btn sm ghost" id="clrLog">Clear log</button></p>`;
+ $('#clrLog').onclick=()=>{store.set('log',[]);drawLog()}}
+drawLog();
+
+/* ---------- breathing lab ---------- */
+(()=>{const chips=$('#breathChips');const ri=$('#ri'),rh=$('#rh'),ro=$('#ro');let cur=BREATH[0];
+ const sync=()=>{$('#oi').textContent=ri.value;$('#oh').textContent=rh.value;$('#oo').textContent=ro.value};
+ BREATH.forEach((b,i)=>{const x=document.createElement('button');x.className='chip'+(i===0?' on':'');x.textContent=b.n;x.onclick=()=>{cur=b;$$('.chip',chips).forEach(c=>c.classList.toggle('on',c===x));ri.value=b.i;rh.value=b.h;ro.value=b.o;sync();$('#pDesc').textContent=b.d+' ('+b.src+')'};chips.append(x)});
+ ri.value=cur.i;rh.value=cur.h;ro.value=cur.o;sync();$('#pDesc').textContent=cur.d+' ('+cur.src+')';[ri,rh,ro].forEach(r=>r.oninput=sync);
+ let run=false,raf=0,t0=0,cycles=0,lastC=-1;const c=$('#pcirc'),lab=$('#plabel');
+ function frame(n){if(!run)return;const I=+ri.value,H=+rh.value,O=+ro.value,T=I+H+O,t=((n-t0)/1000)%T,cy=Math.floor((n-t0)/1000/T);
+  if(cy!==lastC){lastC=cy;cycles=cy;$('#pCount').textContent=cycles+' cycle'+(cycles===1?'':'s')}
+  let s,txt;if(t<I){s=.55+.45*(t/I);txt='Inhale '+Math.ceil(I-t)}else if(t<I+H){s=1;txt='Hold '+Math.ceil(I+H-t)}else{s=1-.45*((t-I-H)/O);txt='Exhale '+Math.ceil(T-t)}
+  c.style.transform='scale('+s.toFixed(3)+')';lab.textContent=txt;raf=requestAnimationFrame(frame)}
+ $('#pStart').onclick=function(){run=!run;this.textContent=run?'Stop':'Start';if(run){t0=performance.now();lastC=-1;cycles=0;$('#pCount').textContent='0 cycles';raf=requestAnimationFrame(frame)}else{cancelAnimationFrame(raf);lab.textContent='Ready';c.style.transform='scale(.55)'}};
+ $('#istagh').innerHTML=ISTAGH.map(x=>`<details><summary>${x.n} <span class="pg">${x.t}</span></summary><div class="body"><p>${esc(x.s)}</p></div></details>`).join('')})();
+
+/* ---------- 16-week plan ---------- */
+(()=>{const inp=$('#planStart');$('#planFood').textContent=PLANFOOD;
+ const iso=d=>d.toISOString().slice(0,10);
+ inp.value=store.get('planStart','');
+ $('#planPhases').innerHTML=PLAN.map(p=>`<div class="card"><h3>Weeks ${p.w[0]}–${p.w[1]}</h3><p class="small muted">Goal: ${esc(p.goal)}</p><h4>Morning</h4><ul>${p.am.map(a=>`<li>${esc(a)}</li>`).join('')}</ul><h4>Night</h4><ul>${p.pm.map(a=>`<li>${esc(a)}</li>`).join('')}</ul></div>`).join('');
+ function draw(){const s=inp.value;const wb=$('#weekbar');let wk=0,day=0;
+  if(s){const dd=Math.floor((new Date(iso(new Date())+'T00:00')-new Date(s+'T00:00'))/864e5);day=dd;wk=Math.floor(dd/7)+1}
+  wb.innerHTML=Array.from({length:16},(_,i)=>`<i class="${s&&i+1<wk?'past':s&&i+1===wk?'now':''}">${i+1}</i>`).join('');
+  const box=$('#planNow');
+  if(!s){box.innerHTML='<p class="muted">Pick a start date to track your week.</p>';return}
+  if(day<0){box.innerHTML='<p class="muted">Your plan starts in '+(-day)+' day(s).</p>';return}
+  if(wk>16){box.innerHTML='<p><b>Plan complete.</b> Sixteen weeks done. The book suggests continuing the muraqaba and consulting a teacher about next steps.</p>';return}
+  const ph=PLAN.find(p=>wk>=p.w[0]&&wk<=p.w[1]);const key='plan.'+iso(new Date());const done=store.get(key,{});const items=[...ph.am.map(a=>'Morning · '+a),...ph.pm.map(a=>'Night · '+a)];
+  box.innerHTML=`<h3>Week ${wk}, day ${day%7+1}: today</h3><p class="small muted">${esc(ph.goal)}</p>`+items.map((t,i)=>`<label class="chk ${done[i]?'done':''}"><input type="checkbox" data-i="${i}" ${done[i]?'checked':''}><span>${esc(t)}</span></label>`).join('')+`<p class="small muted">${Object.values(done).filter(Boolean).length} of ${items.length} done today</p>`;
+  $$('input[type=checkbox]',box).forEach(c=>c.onchange=()=>{done[c.dataset.i]=c.checked;store.set(key,done);draw()})}
+ inp.onchange=()=>{store.set('planStart',inp.value);draw()};draw()})();
+
+/* ---------- levels ---------- */
+(()=>{const L=$('#ladder');L.innerHTML=LEVELS.map((l,i)=>`<div class="rung ${i===0?'on':''}" tabindex="0" role="button" aria-expanded="${i===0}"><div class="rail2"><div class="node">${i+1}</div>${i<LEVELS.length-1?'<div class="line"></div>':''}</div><div class="txt"><h4>${esc(l.n)} <span class="pg">p.${l.pg}</span></h4><p class="one">${esc(l.one)}</p><div class="more">${l.d}</div></div></div>`).join('');
+ $$('.rung',L).forEach(r=>{const t=()=>{const on=!r.classList.contains('on');r.classList.toggle('on',on);r.setAttribute('aria-expanded',on)};r.onclick=t;r.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}})})();
+
+/* ---------- dreams ---------- */
+(()=>{const th=[['all','All'],['health','Health'],['emotional','Emotional'],['conscience','Conscience'],['warning','Warning'],['spiritual','Spiritual'],['future','Future']];let cur='all';const c=$('#dreamChips');
+ th.forEach(([k,l])=>{const b=document.createElement('button');b.className='chip'+(k==='all'?' on':'');b.textContent=l;b.onclick=()=>{cur=k;$$('.chip',c).forEach(x=>x.classList.toggle('on',x===b));draw()};c.append(b)});
+ function draw(){$('#dreamRows').innerHTML=DREAMS.filter(d=>cur==='all'||d[1]===cur).map(d=>`<tr><td>${d[0]}</td><td>${esc(d[2])}<br><span class="tag">${d[1]}</span></td><td>${esc(d[3])}</td></tr>`).join('')}
+ draw()})();
+
+/* ---------- traditions / safety / glossary ---------- */
+$('#tradRows').innerHTML=TRAD.map(t=>`<tr><td><b>${esc(t[0])}</b></td><td>${esc(t[1])}</td><td>${t[2]}</td></tr>`).join('');
+$('#benefits').innerHTML=BENEFITS.map(b=>`<span class="chip" style="cursor:default">${esc(b)}</span>`).join('');
+$('#safeList').innerHTML=SAFETY.map((s,i)=>`<details ${i<2?'open':''}><summary>${esc(s[0])}</summary><div class="body"><p>${esc(s[1])}</p></div></details>`).join('');
+(()=>{const dl=$('#glList');const draw=q=>{dl.innerHTML=GLOSS.filter(g=>!q||(g[0]+g[1]).toLowerCase().includes(q)).map(g=>`<dt>${esc(g[0])}</dt><dd>${esc(g[1])}</dd>`).join('')};$('#glSearch').oninput=e=>draw(e.target.value.toLowerCase());draw('')})();
+$('#srcLine').textContent=BOOK.title+' by '+BOOK.author+'; '+BOOK.trans+'; '+BOOK.pub;
+
+/* ---------- global search ---------- */
+(()=>{const S=$('#search'),q=$('#sq'),res=$('#sres');
+ const idx=[
+  ...GUIDES.map(g=>({k:'Practice',t:g.title,s:g.sum,f:()=>openDetail(g.id),x:g.ar+' '+g.purpose+' '+g.imagery})),
+  ...LEVELS.map(l=>({k:'Stage',t:l.n,s:l.one,f:()=>go('levels'),x:''})),
+  ...CHAPTERS.map(c=>({k:'Chapter p.'+c.p,t:c.t,s:c.s,f:()=>go('map'),x:''})),
+  ...FOUND.map(f=>({k:'Foundation',t:f.t,s:'p.'+f.p,f:()=>go('foundations'),x:f.b.replace(/<[^>]+>/g,' ')})),
+  ...GLOSS.map(g=>({k:'Term',t:g[0],s:g[1],f:()=>{go('glossary');$('#glSearch').value=g[0];$('#glSearch').dispatchEvent(new Event('input'))},x:''})),
+  ...DREAMS.map(d=>({k:'Dream '+d[0],t:d[2],s:d[3],f:()=>go('dreams'),x:''})),
+  ...SAFETY.map(s=>({k:'Safety',t:s[0],s:s[1].slice(0,100),f:()=>go('safety'),x:s[1]}))
+ ];
+ let sel=0,hits=[];
+ const open=()=>{S.classList.add('open');q.value='';draw();q.focus()},close=()=>S.classList.remove('open');
+ function draw(){const v=q.value.trim().toLowerCase();hits=v?idx.filter(i=>(i.t+' '+i.s+' '+i.x).toLowerCase().includes(v)).sort((a,b)=>(b.t.toLowerCase().includes(v)) -(a.t.toLowerCase().includes(v))).slice(0,30):idx.filter(i=>i.k==='Practice').slice(0,8);
+  sel=0;res.innerHTML=hits.length?hits.map((h,i)=>`<a href="#" data-i="${i}" class="${i===0?'sel':''}"><b>${esc(h.t)}</b> <span class="pg">${esc(h.k)}</span><small>${esc(h.s.slice(0,110))}</small></a>`).join(''):'<a>No results</a>';
+  $$('a[data-i]',res).forEach(a=>a.onclick=e=>{e.preventDefault();pick(+a.dataset.i)})}
+ function pick(i){const h=hits[i];if(!h)return;close();h.f()}
+ q.oninput=draw;
+ q.onkeydown=e=>{const as=$$('a[data-i]',res);if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();sel=Math.max(0,Math.min(as.length-1,sel+(e.key==='ArrowDown'?1:-1)));as.forEach((a,i)=>a.classList.toggle('sel',i===sel));as[sel]&&as[sel].scrollIntoView({block:'nearest'})}if(e.key==='Enter')pick(sel);if(e.key==='Escape')close()};
+ S.onclick=e=>{if(e.target===S)close()};
+ $('#searchBtn').onclick=open;$('#searchBtn2').onclick=open;
+ addEventListener('keydown',e=>{if(player.classList.contains('open'))return;if((e.key==='/'&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName))||((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k')){e.preventDefault();open()}if(e.key==='Escape')close()})})();
+
+/* deep link */
+if(location.hash.startsWith('#guide=')){openDetail(location.hash.slice(7),false)}
+})();
+
+</script>
+</body>
+</html>
